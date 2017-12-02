@@ -15,15 +15,12 @@ public class Util {
     }
 
     public static void drawOnBody(Body body, String spriteName, float sizeX, float sizeY){
-        /*Sprite sp = LD40.s.getSprite(spriteName);
+        Util.drawOnBody(body, spriteName, sizeX, sizeY, 0,0,0);
+    }
 
-        sp.setCenter(0.5f, 0.5f);
-        sp.setScale(sizeX, sizeY);
-        sp.setX(body.getPosition().x - sizeX / 2);
-        sp.setY(body.getPosition().y - sizeY / 2);
-        sp.setSize(1, 1);
-        sp.setRotation(body.getAngle() * MathUtils.radiansToDegrees);
-        sp.draw(LD40.s.batch);*/
+    public static void drawOnBody(Body body, String spriteName, float sizeX, float sizeY, float offsetX, float offsetY, float angleOffsetRadians){
+
+
 
         LD40.s.batch.draw(LD40.s.getSprite(spriteName), body.getPosition().x, body.getPosition().y, 0.5f, 0.5f, 1, 1, sizeX, sizeY, body.getAngle() * MathUtils.radiansToDegrees);
     }

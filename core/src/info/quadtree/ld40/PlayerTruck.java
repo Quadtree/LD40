@@ -15,6 +15,11 @@ public class PlayerTruck extends Actor implements InputProcessor {
     Body rearWheel;
     Body rearWheel2;
 
+    Body bed;
+
+    final static float BED_LENGTH = 5f;
+    final static float BED_HEIGHT = 0.25f;
+
     boolean accelLeft;
     boolean accelRight;
 
@@ -76,6 +81,23 @@ public class PlayerTruck extends Actor implements InputProcessor {
         rearWheel = createWheel(-3f, -0.5f);
         rearWheel2 = createWheel(-1.3f, -0.5f);
         frontWheel = createWheel(3f, -0.5f);
+
+        bed = Util.createBodyOfType(BodyDef.BodyType.DynamicBody);
+
+        ps = new PolygonShape();
+        ps.setAsBox(BED_LENGTH / 2, BED_HEIGHT / 2);
+
+        bed.createFixture(ps, 1);
+
+        RevoluteJointDef rjd = new RevoluteJointDef();
+        rjd.bodyA = chassis;
+        rjd.bodyB = bed;
+        rjd.localAnchorA.x = -1.8f;
+        rjd.localAnchorA.y = 1f;
+        rjd.enableLimit = true;
+        rjd.collideConnected = false;
+
+        LD40.s.cgs.world.createJoint(rjd);
 
         Gdx.input.setInputProcessor(this);
     }
@@ -147,5 +169,7 @@ public class PlayerTruck extends Actor implements InputProcessor {
         Util.drawOnBody(rearWheel,"wheel1", 1.6f, 1.6f);
         Util.drawOnBody(rearWheel2,"wheel1", 1.6f, 1.6f);
         Util.drawOnBody(frontWheel,"wheel1", 1.6f, 1.6f);
+
+        Util.drawOnBody(bed,"panel1", BED_LENGTH, BED_HEIGHT);
     }
 }
