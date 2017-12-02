@@ -1,7 +1,7 @@
 package info.quadtree.ld40;
 
 public class HighScoreEntry {
-    public Float Score;
+    public Integer Score;
 
     @Override
     public String toString() {

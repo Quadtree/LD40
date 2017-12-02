@@ -54,6 +54,8 @@ public class EndFlag extends Flag {
 
                         System.err.println(httpResponse.getStatus().getStatusCode());
                         System.err.println(highScores);
+
+                        LD40.s.cgs.highScores = highScores;
                     } catch (Throwable t){
                         System.err.println("Error processing response from server: " + t);
                     }

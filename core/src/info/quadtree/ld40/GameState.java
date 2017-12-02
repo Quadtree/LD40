@@ -1,6 +1,7 @@
 package info.quadtree.ld40;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.math.Vector2;
@@ -24,6 +25,8 @@ public class GameState implements ContactListener {
     public PlayerTruck pc;
 
     public Integer finalScore = null;
+
+    public HighScores highScores = null;
 
     BitmapFont defaultFont = new BitmapFont();
 
@@ -111,17 +114,32 @@ public class GameState implements ContactListener {
         LD40.s.batch.setProjectionMatrix(uiCam.combined);
         LD40.s.batch.begin();
 
+        defaultFont.setColor(Color.WHITE);
         defaultFont.draw(LD40.s.batch, "FPS: " + Gdx.graphics.getFramesPerSecond(), 20, 768 - 40);
 
         if (finalScore == null) {
+            defaultFont.setColor(Color.WHITE);
             defaultFont.draw(LD40.s.batch, baseLevel.getName(), 20, 768 - 20);
             defaultFont.draw(LD40.s.batch, "Time: " + Util.formatFloat(gameTime), 20, 768 - 60);
             defaultFont.draw(LD40.s.batch, "Time Bonus: +" + (int) (getTimeBonus() * 100) + "%", 20, 768 - 80);
         } else {
-            defaultFont.draw(LD40.s.batch, baseLevel.getName(), 450, 350);
-            defaultFont.draw(LD40.s.batch, "Time: " + Util.formatFloat(gameTime), 450, 330);
-            defaultFont.draw(LD40.s.batch, "Time Bonus: +" + (int) (getTimeBonus() * 100) + "%", 450, 310);
-            defaultFont.draw(LD40.s.batch, "Score: " + finalScore, 450, 290);
+            int y = 700;
+            defaultFont.setColor(Color.WHITE);
+            defaultFont.draw(LD40.s.batch, baseLevel.getName(), 450, y -= 20);
+            defaultFont.draw(LD40.s.batch, "Time: " + Util.formatFloat(gameTime), 450, y -= 20);
+            defaultFont.draw(LD40.s.batch, "Time Bonus: +" + (int) (getTimeBonus() * 100) + "%", 450, y -= 20);
+            defaultFont.draw(LD40.s.batch, "Score: " + finalScore, 450, y -= 20);
+
+            if (highScores != null) {
+                y -= 20;
+                defaultFont.draw(LD40.s.batch, "High Score Table", 450, y -= 20);
+
+                for (HighScoreEntry ent : highScores.HighScores){
+                    defaultFont.setColor(ent.Score.equals(finalScore) ? Color.GREEN : Color.LIGHT_GRAY);
+                    defaultFont.draw(LD40.s.batch, "" + ent.Score, 450, y -= 20);
+                }
+
+            }
         }
 
         LD40.s.batch.end();
