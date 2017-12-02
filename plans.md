@@ -6,8 +6,6 @@
 * Level with a trailer and a downhill slope
 
 # TODO
-* Cargo destroyed when it touches the ground
-* Add in named levels
 * Create level 1
 * High score table
 * Increase cargo friction
@@ -22,4 +20,5 @@
 * Music
 
 # Done
-
+* Cargo destroyed when it touches the ground
+* Add in named levels

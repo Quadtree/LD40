@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import info.quadtree.ld40.info.quadtree.ld40.actor.*;
+import info.quadtree.ld40.info.quadtree.ld40.level.BaseLevel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +27,8 @@ public class GameState implements ContactListener {
 
     BitmapFont defaultFont = new BitmapFont();
 
+    private BaseLevel baseLevel;
+
     public float getTimeBonus(){
         float secondsOvertime = Math.max(gameTime - 30, 0);
 
@@ -34,8 +37,8 @@ public class GameState implements ContactListener {
         return bonus;
     }
 
-    public GameState(){
-
+    public GameState(BaseLevel baseLevel){
+        this.baseLevel = baseLevel;
     }
 
     public void addActor(Actor a){
@@ -106,15 +109,17 @@ public class GameState implements ContactListener {
         LD40.s.batch.setProjectionMatrix(uiCam.combined);
         LD40.s.batch.begin();
 
-        defaultFont.draw(LD40.s.batch, "FPS: " + Gdx.graphics.getFramesPerSecond(), 20, 768 - 20);
+        defaultFont.draw(LD40.s.batch, "FPS: " + Gdx.graphics.getFramesPerSecond(), 20, 768 - 40);
 
         if (finalScore == null) {
-            defaultFont.draw(LD40.s.batch, "Time: " + Util.formatFloat(gameTime), 20, 768 - 40);
-            defaultFont.draw(LD40.s.batch, "Time Bonus: +" + (int) (getTimeBonus() * 100) + "%", 20, 768 - 60);
+            defaultFont.draw(LD40.s.batch, baseLevel.getName(), 20, 768 - 20);
+            defaultFont.draw(LD40.s.batch, "Time: " + Util.formatFloat(gameTime), 20, 768 - 60);
+            defaultFont.draw(LD40.s.batch, "Time Bonus: +" + (int) (getTimeBonus() * 100) + "%", 20, 768 - 80);
         } else {
-            defaultFont.draw(LD40.s.batch, "Time: " + Util.formatFloat(gameTime), 450, 350);
-            defaultFont.draw(LD40.s.batch, "Time Bonus: +" + (int) (getTimeBonus() * 100) + "%", 450, 330);
-            defaultFont.draw(LD40.s.batch, "Score: " + finalScore, 450, 310);
+            defaultFont.draw(LD40.s.batch, baseLevel.getName(), 450, 350);
+            defaultFont.draw(LD40.s.batch, "Time: " + Util.formatFloat(gameTime), 450, 330);
+            defaultFont.draw(LD40.s.batch, "Time Bonus: +" + (int) (getTimeBonus() * 100) + "%", 450, 310);
+            defaultFont.draw(LD40.s.batch, "Score: " + finalScore, 450, 290);
         }
 
         LD40.s.batch.end();
@@ -147,10 +152,6 @@ public class GameState implements ContactListener {
         pc = new PlayerTruck();
 
         addActor(pc);
-        addActor(new Cargo("panel1", 20, 20, 1, 1));
-        addActor(new Cargo("panel1", 21, 20, 1, 1));
-        addActor(new Cargo("panel1", 22, 20, 1, 1));
-        addActor(new Cargo("panel1", 23, 20, 1, 1));
 
         cam.setToOrtho(false, 25.6f * (1024f / 768f), 25.6f);
         cam.position.x = 25.6f * (1024f / 768f) / 2;
@@ -163,12 +164,7 @@ public class GameState implements ContactListener {
         uiCam.setToOrtho(false, 1024, 768);
         uiCam.update();
 
-        addActor(new Mountain(new Vector2(0,0), 0.6f));
-        addActor(new Mountain(new Vector2(20,0), 0.95f));
-        addActor(new Mountain(new Vector2(45,0), 0.8f));
-
-        addActor(new StartFlag(new Vector2(0,1.5f)));
-        addActor(new EndFlag(new Vector2(40f,1.5f)));
+        baseLevel.init();
     }
 
     @Override
