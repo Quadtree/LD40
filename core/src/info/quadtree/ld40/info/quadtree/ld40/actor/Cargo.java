@@ -1,9 +1,11 @@
-package info.quadtree.ld40;
+package info.quadtree.ld40.info.quadtree.ld40.actor;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
+import info.quadtree.ld40.LD40;
+import info.quadtree.ld40.Util;
 
 public class Cargo extends Actor {
 

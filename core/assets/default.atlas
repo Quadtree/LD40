@@ -1,19 +1,40 @@
 
 default.png
-size: 128,128
+size: 1024,1024
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-panel1
+ground1
   rotate: false
-  xy: 2, 52
+  xy: 2, 192
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
+mountain1
+  rotate: false
+  xy: 2, 258
+  size: 512, 512
+  orig: 512, 512
+  offset: 0, 0
+  index: -1
+panel1
+  rotate: false
+  xy: 550, 706
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+sky
+  rotate: false
+  xy: 516, 2
+  size: 32, 768
+  orig: 32, 768
+  offset: 0, 0
+  index: -1
 wheel1
   rotate: false
-  xy: 2, 2
+  xy: 2, 142
   size: 48, 48
   orig: 48, 48
   offset: 0, 0

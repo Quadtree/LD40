@@ -1,14 +1,13 @@
-package info.quadtree.ld40;
+package info.quadtree.ld40.info.quadtree.ld40.actor;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.physics.box2d.joints.RevoluteJointDef;
-import javafx.scene.shape.Circle;
+import info.quadtree.ld40.LD40;
+import info.quadtree.ld40.Util;
 
 public class PlayerTruck extends Actor implements InputProcessor {
     public static final float BED_ENDS_HEIGHT = 2f;

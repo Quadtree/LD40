@@ -1,4 +1,4 @@
-package info.quadtree.ld40;
+package info.quadtree.ld40.info.quadtree.ld40.actor;
 
 import com.badlogic.gdx.math.Vector2;
 
