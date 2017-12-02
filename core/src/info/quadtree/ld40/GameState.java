@@ -1,5 +1,6 @@
 package info.quadtree.ld40;
 
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
@@ -41,6 +42,8 @@ public class GameState {
         msDone += 16;
     }
 
+    OrthographicCamera cam = new OrthographicCamera();
+
     public void render(){
         int updates = 0;
 
@@ -49,10 +52,21 @@ public class GameState {
             updates++;
         }
 
+
+        cam.setToOrtho(false, 25.6f * (1024f / 768f), 25.6f);
+        cam.position.x = 25.6f * (1024f / 768f) / 2;
+        cam.position.y = 25.6f / 2;
+        cam.update();
+
+        LD40.s.batch.setProjectionMatrix(cam.combined);
+        LD40.s.batch.begin();
+
         for (int i=0;i<actors.size();++i){
             if (actors.get(i).keep())
                 actors.get(i).render();
         }
+
+        LD40.s.batch.end();
     }
 
     public void dispose(){
