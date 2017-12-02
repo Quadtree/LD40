@@ -82,7 +82,7 @@ public class GameState {
         LD40.s.batch.begin();
 
         final float groundBlockWidth = 64 / 30f;
-        for (int i=0;i<1000;++i){
+        for (int i=-1000;i<1000;++i){
             LD40.s.batch.draw(LD40.s.getSprite("ground1"), groundBlockWidth*i, - groundBlockWidth + 1.5f, groundBlockWidth, groundBlockWidth);
         }
 
