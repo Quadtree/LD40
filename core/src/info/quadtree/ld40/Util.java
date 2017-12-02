@@ -1,7 +1,9 @@
 package info.quadtree.ld40;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.math.Affine2;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 
 public class Util {
@@ -18,11 +20,21 @@ public class Util {
         Util.drawOnBody(body, spriteName, sizeX, sizeY, 0,0,0);
     }
 
-    public static void drawOnBody(Body body, String spriteName, float sizeX, float sizeY, float offsetX, float offsetY, float angleOffsetRadians){
+    public static void drawOnBody(Body body, String spriteName, float sizeX, float sizeY, float offsetX, float offsetY, float angleOffsetDegrees){
 
+        float rot = body.getAngle() * MathUtils.radiansToDegrees;
 
+        Affine2 a2 = new Affine2();
+        a2.idt();
+        a2.rotate(rot);
 
-        LD40.s.batch.draw(LD40.s.getSprite(spriteName), body.getPosition().x, body.getPosition().y, 0.5f, 0.5f, 1, 1, sizeX, sizeY, body.getAngle() * MathUtils.radiansToDegrees);
+        Vector2 offset = new Vector2(offsetX, offsetY);
+        a2.applyTo(offset);
+
+        float posX = body.getPosition().x + offset.x;
+        float posY = body.getPosition().y + offset.y;
+
+        LD40.s.batch.draw(LD40.s.getSprite(spriteName), posX, posY, 0.5f, 0.5f, 1, 1, sizeX, sizeY, rot + angleOffsetDegrees);
     }
 
     /*public static void drawOnFixtures(Body body, String spriteName){

@@ -4,12 +4,15 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.physics.box2d.joints.RevoluteJointDef;
 import javafx.scene.shape.Circle;
 
 public class PlayerTruck extends Actor implements InputProcessor {
+    public static final float BED_ENDS_HEIGHT = 2f;
+    public static final int BED_ENDS_OFFSET_ANGLE = 20;
     Body chassis;
     Body frontWheel;
     Body rearWheel;
@@ -19,6 +22,7 @@ public class PlayerTruck extends Actor implements InputProcessor {
 
     final static float BED_LENGTH = 5f;
     final static float BED_HEIGHT = 0.25f;
+    final static float BED_ENDS_EXTRA_SPREAD = 0.2f;
 
     boolean accelLeft;
     boolean accelRight;
@@ -86,7 +90,14 @@ public class PlayerTruck extends Actor implements InputProcessor {
 
         ps = new PolygonShape();
         ps.setAsBox(BED_LENGTH / 2, BED_HEIGHT / 2);
+        bed.createFixture(ps, 1);
 
+        ps = new PolygonShape();
+        ps.setAsBox(BED_ENDS_HEIGHT / 2, BED_HEIGHT / 2, new Vector2(BED_LENGTH / 2 + BED_ENDS_EXTRA_SPREAD, BED_ENDS_HEIGHT / 2), 90 - BED_ENDS_OFFSET_ANGLE);
+        bed.createFixture(ps, 1);
+
+        ps = new PolygonShape();
+        ps.setAsBox(BED_ENDS_HEIGHT / 2, BED_HEIGHT / 2, new Vector2(-BED_LENGTH / 2 - BED_ENDS_EXTRA_SPREAD, BED_ENDS_HEIGHT / 2), 90 + BED_ENDS_OFFSET_ANGLE);
         bed.createFixture(ps, 1);
 
         RevoluteJointDef rjd = new RevoluteJointDef();
@@ -171,5 +182,7 @@ public class PlayerTruck extends Actor implements InputProcessor {
         Util.drawOnBody(frontWheel,"wheel1", 1.6f, 1.6f);
 
         Util.drawOnBody(bed,"panel1", BED_LENGTH, BED_HEIGHT);
+        Util.drawOnBody(bed,"panel1", BED_ENDS_HEIGHT, BED_HEIGHT, BED_LENGTH / 2 + BED_ENDS_EXTRA_SPREAD, BED_ENDS_HEIGHT / 2, 90 - BED_ENDS_OFFSET_ANGLE);
+        Util.drawOnBody(bed,"panel1", BED_ENDS_HEIGHT, BED_HEIGHT, -BED_LENGTH / 2 - BED_ENDS_EXTRA_SPREAD, BED_ENDS_HEIGHT / 2, 90 + BED_ENDS_OFFSET_ANGLE);
     }
 }
