@@ -27,7 +27,7 @@ public class PlayerTruck extends Actor implements InputProcessor {
     boolean accelRight;
 
     public float getLengthBehind(){
-        return 4f;
+        return 5f;
     }
 
     @Override

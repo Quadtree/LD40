@@ -25,11 +25,11 @@ public class GameState {
 
     public PlayerTruck pc;
 
-    public Float finalScore = null;
+    public Integer finalScore = null;
 
     BitmapFont defaultFont = new BitmapFont();
 
-    float getTimeBonus(){
+    public float getTimeBonus(){
         float secondsOvertime = Math.max(gameTime - 30, 0);
 
         float bonus = 0.5f * (float)Math.pow(0.5f, secondsOvertime / 30);
@@ -117,7 +117,7 @@ public class GameState {
         } else {
             defaultFont.draw(LD40.s.batch, String.format("Time: %.1f", gameTime), 450, 350);
             defaultFont.draw(LD40.s.batch, String.format("Time Bonus: +%d%%", (int) (getTimeBonus() * 100)), 450, 330);
-            defaultFont.draw(LD40.s.batch, String.format("Score: %d", (int) ((float)finalScore)), 450, 310);
+            defaultFont.draw(LD40.s.batch, String.format("Score: %d", finalScore), 450, 310);
         }
 
         LD40.s.batch.end();

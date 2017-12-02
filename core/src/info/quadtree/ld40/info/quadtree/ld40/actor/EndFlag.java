@@ -18,8 +18,19 @@ public class EndFlag extends Flag {
     public void update() {
         super.update();
 
-        if (LD40.s.cgs.pc.getPosition().x - LD40.s.cgs.pc.getLengthBehind() > pos.x){
-            LD40.s.cgs.finalScore = 1f;
+        if (LD40.s.cgs.pc.getPosition().x - LD40.s.cgs.pc.getLengthBehind() > pos.x && LD40.s.cgs.finalScore == null){
+
+            float totalScore = 0;
+
+            for (Actor a : LD40.s.cgs.actors){
+                if (a instanceof Cargo){
+                    if (a.getPosition().x >= pos.x){
+                        totalScore += ((Cargo) a).getScore();
+                    }
+                }
+            }
+
+            LD40.s.cgs.finalScore = (int)(totalScore * (1 + LD40.s.cgs.getTimeBonus()));
         }
     }
 }

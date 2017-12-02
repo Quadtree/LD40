@@ -33,6 +33,10 @@ public class Cargo extends Actor {
         body.createFixture(ps, 1f);
     }
 
+    public float getScore(){
+        return 10;
+    }
+
     @Override
     public boolean keep() {
         return super.keep();
