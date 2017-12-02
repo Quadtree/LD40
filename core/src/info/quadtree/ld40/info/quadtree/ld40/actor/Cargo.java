@@ -15,6 +15,9 @@ public class Cargo extends Actor {
 
     Body body;
 
+    boolean markForDestroy = false;
+    boolean destroyed = false;
+
     public Cargo(String spriteName, float x, float y, float width, float height){
         this.spriteName = spriteName;
         this.width = width;
@@ -22,8 +25,13 @@ public class Cargo extends Actor {
 
         body = Util.createBodyOfType(BodyDef.BodyType.KinematicBody);
         body.setTransform(x, y, 0);
+        body.setUserData(this);
 
         addFixtures();
+    }
+
+    public void destroy(){
+        markForDestroy = true;
     }
 
     protected void addFixtures(){
@@ -39,7 +47,7 @@ public class Cargo extends Actor {
 
     @Override
     public boolean keep() {
-        return super.keep();
+        return !destroyed;
     }
 
     @Override
@@ -53,13 +61,19 @@ public class Cargo extends Actor {
                 }
             }
         }
+
+        if (markForDestroy && !destroyed){
+            LD40.s.cgs.world.destroyBody(body);
+            body = null;
+            destroyed = true;
+        }
     }
 
     @Override
     public void render() {
         super.render();
 
-        Util.drawOnBody(body, spriteName, width, height);
+        if (body != null) Util.drawOnBody(body, spriteName, width, height);
     }
 
     @Override

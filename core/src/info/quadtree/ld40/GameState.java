@@ -4,16 +4,13 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.physics.box2d.BodyDef;
-import com.badlogic.gdx.physics.box2d.PolygonShape;
-import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.physics.box2d.*;
 import info.quadtree.ld40.info.quadtree.ld40.actor.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class GameState {
+public class GameState implements ContactListener {
     public World world;
 
     public List<Actor> actors = new ArrayList<Actor>();
@@ -130,6 +127,7 @@ public class GameState {
 
     public void init() {
         world = new World(new Vector2(0, -9.8f), true);
+        world.setContactListener(this);
 
         // the truck will be 4m long
         // since it will be about 120 pixels long, that means 30px=1m
@@ -140,6 +138,7 @@ public class GameState {
         Body groundBody = world.createBody(groundBodyDef);
         PolygonShape ps = new PolygonShape();
         ps.setAsBox(1000, 1, new Vector2(0, 0), 0);
+        groundBody.setUserData(this);
 
         groundBody.createFixture(ps, 0);
 
@@ -170,5 +169,39 @@ public class GameState {
 
         addActor(new StartFlag(new Vector2(0,1.5f)));
         addActor(new EndFlag(new Vector2(40f,1.5f)));
+    }
+
+    @Override
+    public void beginContact(Contact contact) {
+
+        Object ud1 = contact.getFixtureA().getBody().getUserData();
+        Object ud2 = contact.getFixtureB().getBody().getUserData();
+
+        if (
+                (ud1 == this || ud2 == this) &&
+                (ud1 instanceof Cargo || ud2 instanceof Cargo)
+                ){
+            if (ud1 instanceof Cargo){
+                ((Cargo) ud1).destroy();
+            }
+            if (ud2 instanceof Cargo){
+                ((Cargo) ud2).destroy();
+            }
+        }
+    }
+
+    @Override
+    public void endContact(Contact contact) {
+
+    }
+
+    @Override
+    public void preSolve(Contact contact, Manifold oldManifold) {
+
+    }
+
+    @Override
+    public void postSolve(Contact contact, ContactImpulse impulse) {
+
     }
 }
