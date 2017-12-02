@@ -25,7 +25,7 @@ public class PlayerTruck extends Actor {
         rearWheel = createWheel(-2, -0.5f);
         frontWheel = createWheel(2, -0.5f);
 
-        chassis.setTransform(10,10, 0);
+        chassis.setTransform(10,15, 0);
     }
 
     Body createWheel(float relX, float relY){
@@ -40,6 +40,11 @@ public class PlayerTruck extends Actor {
         rjd.bodyB = ret;
         rjd.localAnchorA.x = relX;
         rjd.localAnchorA.y = relY;
+        rjd.localAnchorB.x = 0;
+        rjd.localAnchorB.y = 0;
+        rjd.collideConnected = false;
+
+        LD40.s.cgs.world.createJoint(rjd);
 
         return ret;
     }
@@ -58,10 +63,8 @@ public class PlayerTruck extends Actor {
     public void render() {
         super.render();
 
-        System.out.println(chassis.getPosition());
-
         Util.drawOnBody(chassis,"panel1", 4f, .8f);
         Util.drawOnBody(rearWheel,"wheel1", 1.6f, 1.6f);
-        Util.drawOnBody(rearWheel,"wheel1", 1.6f, 1.6f);
+        Util.drawOnBody(frontWheel,"wheel1", 1.6f, 1.6f);
     }
 }

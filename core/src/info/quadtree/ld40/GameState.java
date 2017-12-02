@@ -36,6 +36,8 @@ public class GameState {
                 actors.remove(i--);
         }
 
+        world.step(0.016f, 4, 4);
+
         msDone += 16;
     }
 
@@ -69,7 +71,7 @@ public class GameState {
         groundBodyDef.type = BodyDef.BodyType.StaticBody;
         Body groundBody = world.createBody(groundBodyDef);
         PolygonShape ps = new PolygonShape();
-        ps.setAsBox(1000, 1, new Vector2(0, 25.6f), 0);
+        ps.setAsBox(1000, 1, new Vector2(0, 0), 0);
 
         groundBody.createFixture(ps, 0);
 
