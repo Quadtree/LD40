@@ -8,6 +8,7 @@ import com.badlogic.gdx.utils.Json;
 import info.quadtree.ld40.HighScoreEntry;
 import info.quadtree.ld40.HighScores;
 import info.quadtree.ld40.LD40;
+import info.quadtree.ld40.Util;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,6 +42,7 @@ public class EndFlag extends Flag {
             }
 
             LD40.s.cgs.finalScore = (int)(totalScore * (1 + LD40.s.cgs.getTimeBonus()));
+            Util.log( "Level is done final score is " + LD40.s.cgs.finalScore);
 
             Net.HttpRequest req = new Net.HttpRequest(Net.HttpMethods.GET);
             req.setUrl(HIGH_SCORE_SERVER_DOMAIN + "/ld/ld40/high_score.php?l=" + LD40.s.cgs.baseLevel.getName().replace(" ", "%20") + "&s=" + LD40.s.cgs.finalScore);
@@ -52,12 +54,12 @@ public class EndFlag extends Flag {
                         Json js = new Json();
                         HighScores highScores = js.fromJson(HighScores.class, httpResponse.getResultAsStream());
 
-                        System.err.println(httpResponse.getStatus().getStatusCode());
-                        System.err.println(highScores);
+                        Util.log( "" + httpResponse.getStatus().getStatusCode());
+                        Util.log( "" + highScores);
 
                         LD40.s.cgs.highScores = highScores;
                     } catch (Throwable t){
-                        System.err.println("Error processing response from server: " + t);
+                        Util.log( "Error processing response from server: " + t);
                     }
                 }
 

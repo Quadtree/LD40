@@ -15,6 +15,11 @@ public class DesktopLauncher {
 			public String formatFloat(float f) {
 				return String.format("%.1f", f);
 			}
+
+			@Override
+			public void log(String msg) {
+				System.err.println("UL: " + msg);
+			}
 		};
 
 		TexturePacker.processIfModified("../../raw_assets/", ".", "default");

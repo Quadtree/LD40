@@ -6,6 +6,8 @@
 	<inherits name='com.badlogic.gdx.ai' />
 	<inherits name='com.badlogic.gdx.controllers.controllers-gwt' />
 
+	<inherits name='com.google.gwt.logging.Logging' />
+
 	<inherits name='LD40' />
 	<entry-point class='info.quadtree.ld40.client.HtmlLauncher' />
 	<set-configuration-property name='xsiframe.failIfScriptTag' value='FALSE'/>

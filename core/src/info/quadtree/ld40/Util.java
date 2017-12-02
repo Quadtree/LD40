@@ -52,6 +52,7 @@ public class Util {
 
     public interface FloatFormatter {
         String formatFloat(float f);
+        void log(String msg);
     }
 
     public static FloatFormatter defaultFloatFormatter = null;
@@ -59,4 +60,6 @@ public class Util {
     public static String formatFloat(float f){
         return defaultFloatFormatter.formatFloat(f);
     }
+
+    public static void log(String msg){ defaultFloatFormatter.log(msg); }
 }

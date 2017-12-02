@@ -46,6 +46,10 @@ task dist(dependsOn: [clean, compileGwt]) {
             from "war"
             into "build/dist"
         }
+        copy {
+            from "build/dist"
+            into "Y:/ld/ld40/html5"
+        }
     }
 }
 
