@@ -24,9 +24,19 @@ public class GameState {
 
     long msDone;
 
+    float gameTime = 0;
+
     PlayerTruck pc;
 
     BitmapFont defaultFont = new BitmapFont();
+
+    float getTimeBonus(){
+        float secondsOvertime = Math.max(gameTime - 30, 0);
+
+        float bonus = 0.5f * (float)Math.pow(0.5f, secondsOvertime / 30);
+
+        return bonus;
+    }
 
     public GameState(){
 
@@ -50,6 +60,7 @@ public class GameState {
         world.step(0.016f, 4, 4);
 
         msDone += 16;
+        gameTime += 0.016f;
     }
 
     OrthographicCamera cam = new OrthographicCamera();
@@ -98,7 +109,9 @@ public class GameState {
         LD40.s.batch.setProjectionMatrix(uiCam.combined);
         LD40.s.batch.begin();
 
-        defaultFont.draw(LD40.s.batch, "FPS: " + Gdx.graphics.getFramesPerSecond(), 20, 20);
+        defaultFont.draw(LD40.s.batch, "FPS: " + Gdx.graphics.getFramesPerSecond(), 20, 768 - 20);
+        defaultFont.draw(LD40.s.batch, String.format("Time: %.1f", gameTime), 20, 768 - 40);
+        defaultFont.draw(LD40.s.batch, String.format("Time Bonus: +%d%%", (int)(getTimeBonus() * 100)), 20, 768 - 60);
 
         LD40.s.batch.end();
     }
