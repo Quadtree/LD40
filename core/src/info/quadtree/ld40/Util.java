@@ -2,8 +2,7 @@ package info.quadtree.ld40;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.MathUtils;
-import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.*;
 
 public class Util {
     public static Body createBodyOfType(BodyDef.BodyType type){
@@ -28,4 +27,17 @@ public class Util {
 
         LD40.s.batch.draw(LD40.s.getSprite(spriteName), body.getPosition().x, body.getPosition().y, 0.5f, 0.5f, 1, 1, sizeX, sizeY, body.getAngle() * MathUtils.radiansToDegrees);
     }
+
+    /*public static void drawOnFixtures(Body body, String spriteName){
+        for (Fixture fx : body.getFixtureList()){
+            Shape shp = fx.getShape();
+
+            if (shp instanceof PolygonShape){
+                shp.get
+            }
+            LD40.s.batch.draw(LD40.s.getSprite(spriteName), body.getPosition().x, body.getPosition().y, 0.5f, 0.5f, 1, 1, sizeX, sizeY, body.getAngle() * MathUtils.radiansToDegrees);
+        }
+
+
+    }*/
 }

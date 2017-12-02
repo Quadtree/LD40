@@ -13,6 +13,7 @@ public class PlayerTruck extends Actor implements InputProcessor {
     Body chassis;
     Body frontWheel;
     Body rearWheel;
+    Body rearWheel2;
 
     boolean accelLeft;
     boolean accelRight;
@@ -67,13 +68,14 @@ public class PlayerTruck extends Actor implements InputProcessor {
         chassis = Util.createBodyOfType(BodyDef.BodyType.DynamicBody);
 
         PolygonShape ps = new PolygonShape();
-        ps.setAsBox(2, 0.4f);
+        ps.setAsBox(3, 0.4f);
 
         chassis.createFixture(ps, 1);
         chassis.setTransform(10,15, 0);
 
-        rearWheel = createWheel(-2, -0.5f);
-        frontWheel = createWheel(2, -0.5f);
+        rearWheel = createWheel(-3f, -0.5f);
+        rearWheel2 = createWheel(-1.3f, -0.5f);
+        frontWheel = createWheel(3f, -0.5f);
 
         Gdx.input.setInputProcessor(this);
     }
@@ -94,7 +96,7 @@ public class PlayerTruck extends Actor implements InputProcessor {
         RevoluteJointDef rjd = new RevoluteJointDef();
         rjd.bodyA = chassis;
         rjd.bodyB = ret;
-        rjd.localAnchorA.x = -relX;
+        rjd.localAnchorA.x = relX;
         rjd.localAnchorA.y = relY;
         rjd.localAnchorB.x = 0;
         rjd.localAnchorB.y = 0;
@@ -134,14 +136,16 @@ public class PlayerTruck extends Actor implements InputProcessor {
 
         frontWheel.setAngularVelocity(-enginePower * accel);
         rearWheel.setAngularVelocity(-enginePower * accel);
+        rearWheel2.setAngularVelocity(-enginePower * accel);
     }
 
     @Override
     public void render() {
         super.render();
 
-        Util.drawOnBody(chassis,"panel1", 4f, .8f);
+        Util.drawOnBody(chassis,"panel1", 6f, .8f);
         Util.drawOnBody(rearWheel,"wheel1", 1.6f, 1.6f);
+        Util.drawOnBody(rearWheel2,"wheel1", 1.6f, 1.6f);
         Util.drawOnBody(frontWheel,"wheel1", 1.6f, 1.6f);
     }
 }
