@@ -23,7 +23,9 @@ public class GameState {
 
     float gameTime = 0;
 
-    PlayerTruck pc;
+    public PlayerTruck pc;
+
+    public Float finalScore = null;
 
     BitmapFont defaultFont = new BitmapFont();
 
@@ -57,7 +59,8 @@ public class GameState {
         world.step(0.016f, 4, 4);
 
         msDone += 16;
-        gameTime += 0.016f;
+
+        if (finalScore == null) gameTime += 0.016f;
     }
 
     OrthographicCamera cam = new OrthographicCamera();
@@ -107,8 +110,15 @@ public class GameState {
         LD40.s.batch.begin();
 
         defaultFont.draw(LD40.s.batch, "FPS: " + Gdx.graphics.getFramesPerSecond(), 20, 768 - 20);
-        defaultFont.draw(LD40.s.batch, String.format("Time: %.1f", gameTime), 20, 768 - 40);
-        defaultFont.draw(LD40.s.batch, String.format("Time Bonus: +%d%%", (int)(getTimeBonus() * 100)), 20, 768 - 60);
+
+        if (finalScore == null) {
+            defaultFont.draw(LD40.s.batch, String.format("Time: %.1f", gameTime), 20, 768 - 40);
+            defaultFont.draw(LD40.s.batch, String.format("Time Bonus: +%d%%", (int) (getTimeBonus() * 100)), 20, 768 - 60);
+        } else {
+            defaultFont.draw(LD40.s.batch, String.format("Time: %.1f", gameTime), 450, 350);
+            defaultFont.draw(LD40.s.batch, String.format("Time Bonus: +%d%%", (int) (getTimeBonus() * 100)), 450, 330);
+            defaultFont.draw(LD40.s.batch, String.format("Score: %d", (int) ((float)finalScore)), 450, 310);
+        }
 
         LD40.s.batch.end();
     }
@@ -159,6 +169,6 @@ public class GameState {
         addActor(new Mountain(new Vector2(45,0), 0.8f));
 
         addActor(new StartFlag(new Vector2(0,1.5f)));
-        addActor(new EndFlag(new Vector2(150f,1.5f)));
+        addActor(new EndFlag(new Vector2(40f,1.5f)));
     }
 }

@@ -26,6 +26,10 @@ public class PlayerTruck extends Actor implements InputProcessor {
     boolean accelLeft;
     boolean accelRight;
 
+    public float getLengthBehind(){
+        return 4f;
+    }
+
     @Override
     public boolean keyDown(int keycode) {
         if (keycode == Input.Keys.LEFT || keycode == Input.Keys.A) accelLeft = true;
