@@ -3,6 +3,7 @@ package info.quadtree.ld40;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -30,22 +31,32 @@ public class LD40 extends ApplicationAdapter {
 	public Sprite getSprite(String name){
 		if (!spritePool.containsKey(name)) spritePool.put(name, atlas.createSprite(name));
 
+		if (!spritePool.containsKey(name) || spritePool.get(name) == null) throw new RuntimeException("Cannot find sprite " + name);
+
 		return spritePool.get(name);
 	}
 	
 	@Override
 	public void create () {
+		s = this;
 		batch = new SpriteBatch();
 		img = new Texture("badlogic.jpg");
 		atlas = new TextureAtlas(Gdx.files.internal("default.atlas"));
 
 		cgs = new GameState();
+		cgs.init();
 	}
 
 	@Override
 	public void render () {
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
+		OrthographicCamera cam = new OrthographicCamera();
+		cam.setToOrtho(false, 26, 26);
+		cam.update();
+
+		batch.setProjectionMatrix(cam.projection);
 		batch.begin();
 		cgs.render();
 		batch.end();

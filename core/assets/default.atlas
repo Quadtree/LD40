@@ -6,8 +6,15 @@ filter: Nearest,Nearest
 repeat: none
 panel1
   rotate: false
-  xy: 2, 2
+  xy: 2, 52
   size: 64, 64
   orig: 64, 64
+  offset: 0, 0
+  index: -1
+wheel1
+  rotate: false
+  xy: 2, 2
+  size: 48, 48
+  orig: 48, 48
   offset: 0, 0
   index: -1
