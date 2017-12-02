@@ -21,11 +21,12 @@ public class PlayerTruck extends Actor {
         ps.setAsBox(2, 0.4f);
 
         chassis.createFixture(ps, 1);
+        chassis.setTransform(10,15, 0);
 
         rearWheel = createWheel(-2, -0.5f);
         frontWheel = createWheel(2, -0.5f);
 
-        chassis.setTransform(10,15, 0);
+
     }
 
     Body createWheel(float relX, float relY){
@@ -38,13 +39,18 @@ public class PlayerTruck extends Actor {
         RevoluteJointDef rjd = new RevoluteJointDef();
         rjd.bodyA = chassis;
         rjd.bodyB = ret;
-        rjd.localAnchorA.x = relX;
+        rjd.localAnchorA.x = -relX;
         rjd.localAnchorA.y = relY;
         rjd.localAnchorB.x = 0;
         rjd.localAnchorB.y = 0;
         rjd.collideConnected = false;
+        Vector2 anchorPt = chassis.getPosition().cpy().add(new Vector2(relX, relY));
+
+        System.out.println("Anchor Pt: " + anchorPt);
 
         LD40.s.cgs.world.createJoint(rjd);
+
+        ret.setTransform(anchorPt, 0);
 
         return ret;
     }
@@ -57,6 +63,11 @@ public class PlayerTruck extends Actor {
     @Override
     public void update() {
         super.update();
+
+        //frontWheel.applyTorque(-500, true);
+        //rearWheel.applyTorque(-500, true);
+        frontWheel.applyAngularImpulse(-0.08f, true);
+        rearWheel.applyAngularImpulse(-0.08f, true);
     }
 
     @Override
