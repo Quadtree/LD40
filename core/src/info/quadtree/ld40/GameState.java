@@ -72,7 +72,7 @@ public class GameState {
         LD40.s.batch.setProjectionMatrix(backgroundCam.combined);
         LD40.s.batch.begin();
 
-
+        LD40.s.batch.draw(LD40.s.getSprite("sky"), -1000, 0, 5000, 25.6f);
 
         for (Actor a : actors) a.backgroundRender();
         LD40.s.batch.end();
@@ -84,6 +84,7 @@ public class GameState {
         final float groundBlockWidth = 64 / 30f;
         for (int i=-1000;i<1000;++i){
             LD40.s.batch.draw(LD40.s.getSprite("ground1"), groundBlockWidth*i, - groundBlockWidth + 1.5f, groundBlockWidth, groundBlockWidth);
+
         }
 
         for (int i=0;i<actors.size();++i){
