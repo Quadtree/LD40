@@ -13,7 +13,7 @@ import java.util.List;
 public class GameState {
     public World world;
 
-    List<Actor> actors = new ArrayList<Actor>();
+    public List<Actor> actors = new ArrayList<Actor>();
     List<Actor> actorAddQueue = new ArrayList<Actor>();
 
     long msDone;
@@ -92,5 +92,9 @@ public class GameState {
         msDone = System.currentTimeMillis();
 
         addActor(new PlayerTruck());
+        addActor(new Cargo("panel1", 20, 20, 1, 1));
+        addActor(new Cargo("panel1", 21, 20, 1, 1));
+        addActor(new Cargo("panel1", 22, 20, 1, 1));
+        addActor(new Cargo("panel1", 23, 20, 1, 1));
     }
 }

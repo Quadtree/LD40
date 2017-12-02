@@ -185,4 +185,9 @@ public class PlayerTruck extends Actor implements InputProcessor {
         Util.drawOnBody(bed,"panel1", BED_ENDS_HEIGHT, BED_HEIGHT, BED_LENGTH / 2 + BED_ENDS_EXTRA_SPREAD, BED_ENDS_HEIGHT / 2, 90 - BED_ENDS_OFFSET_ANGLE);
         Util.drawOnBody(bed,"panel1", BED_ENDS_HEIGHT, BED_HEIGHT, -BED_LENGTH / 2 - BED_ENDS_EXTRA_SPREAD, BED_ENDS_HEIGHT / 2, 90 + BED_ENDS_OFFSET_ANGLE);
     }
+
+    @Override
+    public Vector2 getPosition() {
+        return chassis.getPosition().cpy();
+    }
 }
