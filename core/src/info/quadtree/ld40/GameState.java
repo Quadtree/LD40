@@ -10,6 +10,7 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import info.quadtree.ld40.info.quadtree.ld40.actor.Actor;
 import info.quadtree.ld40.info.quadtree.ld40.actor.Cargo;
+import info.quadtree.ld40.info.quadtree.ld40.actor.Mountain;
 import info.quadtree.ld40.info.quadtree.ld40.actor.PlayerTruck;
 
 import java.util.ArrayList;
@@ -66,7 +67,7 @@ public class GameState {
         cam.translate((pc.getPosition().x - cam.position.x) / 20f, 0);
         cam.update();
 
-        backgroundCam.position.x = cam.position.x / 20f;
+        backgroundCam.position.x = cam.position.x / 5f;
         backgroundCam.update();
 
         LD40.s.batch.setProjectionMatrix(backgroundCam.combined);
@@ -142,5 +143,9 @@ public class GameState {
 
         uiCam.setToOrtho(false, 1024, 768);
         uiCam.update();
+
+        addActor(new Mountain(new Vector2(0,0), 0.6f));
+        addActor(new Mountain(new Vector2(20,0), 0.95f));
+        addActor(new Mountain(new Vector2(45,0), 0.8f));
     }
 }
