@@ -53,10 +53,12 @@ public class LD40 extends ApplicationAdapter {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
 		OrthographicCamera cam = new OrthographicCamera();
-		cam.setToOrtho(false, 26, 26);
+		cam.setToOrtho(false, 25.6f * (1024f / 768f), 25.6f);
+		cam.position.x = 25.6f * (1024f / 768f) / 2;
+		cam.position.y = 25.6f / 2;
 		cam.update();
 
-		batch.setProjectionMatrix(cam.projection);
+		batch.setProjectionMatrix(cam.combined);
 		batch.begin();
 		cgs.render();
 		batch.end();
