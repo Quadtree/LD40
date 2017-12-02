@@ -46,6 +46,13 @@ sky
   orig: 32, 768
   offset: 0, 0
   index: -1
+solidpole
+  rotate: false
+  xy: 616, 762
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: -1
 wheel1
   rotate: false
   xy: 550, 656

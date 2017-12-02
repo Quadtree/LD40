@@ -93,6 +93,8 @@ public class GameState implements ContactListener {
         LD40.s.batch.setProjectionMatrix(cam.combined);
         LD40.s.batch.begin();
 
+        for (Actor a : actors) a.renderMidground();
+
         final float groundBlockWidth = 64 / 30f;
         for (int i=-1000;i<1000;++i){
             LD40.s.batch.draw(LD40.s.getSprite("ground1"), groundBlockWidth*i, - groundBlockWidth + 1.5f, groundBlockWidth, groundBlockWidth);

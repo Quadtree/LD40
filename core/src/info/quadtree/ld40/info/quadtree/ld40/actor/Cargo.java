@@ -28,6 +28,8 @@ public class Cargo extends Actor {
         body.setUserData(this);
 
         addFixtures();
+
+        LD40.s.cgs.addActor(new CargoPole(new Vector2(x + width / 2, y + width / 2)));
     }
 
     public void destroy(){
@@ -56,7 +58,7 @@ public class Cargo extends Actor {
 
         for (Actor a : LD40.s.cgs.actors){
             if (a instanceof PlayerTruck){
-                if (Math.abs(a.getPosition().x - this.getPosition().x) < 8){
+                if (Math.abs(a.getPosition().x - this.getPosition().x) < 5){
                     body.setType(BodyDef.BodyType.DynamicBody);
                 }
             }

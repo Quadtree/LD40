@@ -6,6 +6,7 @@ public abstract class Actor {
     public boolean keep(){ return true; }
     public void update(){}
     public void render(){}
+    public void renderMidground(){}
     public void backgroundRender(){}
 
     public Vector2 getPosition(){ return new Vector2(0,0); }
