@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import info.quadtree.ld40.info.quadtree.ld40.actor.*;
@@ -143,6 +144,9 @@ public class GameState implements ContactListener {
         }
 
         LD40.s.batch.end();
+
+        Box2DDebugRenderer dbg = new Box2DDebugRenderer();
+        dbg.render(world, cam.combined);
     }
 
     public void dispose(){

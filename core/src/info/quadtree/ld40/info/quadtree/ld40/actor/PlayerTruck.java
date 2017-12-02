@@ -3,6 +3,7 @@ package info.quadtree.ld40.info.quadtree.ld40.actor;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.physics.box2d.joints.RevoluteJointDef;
@@ -96,11 +97,11 @@ public class PlayerTruck extends Actor implements InputProcessor {
         bed.createFixture(ps, 1);
 
         ps = new PolygonShape();
-        ps.setAsBox(BED_ENDS_HEIGHT / 2, BED_HEIGHT / 2, new Vector2(BED_LENGTH / 2 + BED_ENDS_EXTRA_SPREAD, BED_ENDS_HEIGHT / 2), 90 - BED_ENDS_OFFSET_ANGLE);
+        ps.setAsBox(BED_ENDS_HEIGHT / 2, BED_HEIGHT / 2, new Vector2(BED_LENGTH / 2 + BED_ENDS_EXTRA_SPREAD, BED_ENDS_HEIGHT / 2), 90 - BED_ENDS_OFFSET_ANGLE * MathUtils.degreesToRadians);
         bed.createFixture(ps, 1);
 
         ps = new PolygonShape();
-        ps.setAsBox(BED_ENDS_HEIGHT / 2, BED_HEIGHT / 2, new Vector2(-BED_LENGTH / 2 - BED_ENDS_EXTRA_SPREAD, BED_ENDS_HEIGHT / 2), 90 + BED_ENDS_OFFSET_ANGLE);
+        ps.setAsBox(BED_ENDS_HEIGHT / 2, BED_HEIGHT / 2, new Vector2(-BED_LENGTH / 2 - BED_ENDS_EXTRA_SPREAD, BED_ENDS_HEIGHT / 2), 90 + BED_ENDS_OFFSET_ANGLE * MathUtils.degreesToRadians);
         bed.createFixture(ps, 1);
 
         RevoluteJointDef rjd = new RevoluteJointDef();
