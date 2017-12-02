@@ -8,10 +8,7 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
-import info.quadtree.ld40.info.quadtree.ld40.actor.Actor;
-import info.quadtree.ld40.info.quadtree.ld40.actor.Cargo;
-import info.quadtree.ld40.info.quadtree.ld40.actor.Mountain;
-import info.quadtree.ld40.info.quadtree.ld40.actor.PlayerTruck;
+import info.quadtree.ld40.info.quadtree.ld40.actor.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -160,5 +157,8 @@ public class GameState {
         addActor(new Mountain(new Vector2(0,0), 0.6f));
         addActor(new Mountain(new Vector2(20,0), 0.95f));
         addActor(new Mountain(new Vector2(45,0), 0.8f));
+
+        addActor(new StartFlag(new Vector2(0,1.5f)));
+        addActor(new EndFlag(new Vector2(150f,1.5f)));
     }
 }

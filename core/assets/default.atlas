@@ -4,9 +4,23 @@ size: 1024,1024
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-ground1
+flag
   rotate: false
   xy: 2, 192
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+flagpole
+  rotate: false
+  xy: 550, 706
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+ground1
+  rotate: false
+  xy: 2, 126
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
@@ -20,7 +34,7 @@ mountain1
   index: -1
 panel1
   rotate: false
-  xy: 550, 706
+  xy: 68, 192
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
@@ -34,7 +48,7 @@ sky
   index: -1
 wheel1
   rotate: false
-  xy: 2, 142
+  xy: 550, 656
   size: 48, 48
   orig: 48, 48
   offset: 0, 0
