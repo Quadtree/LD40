@@ -31,8 +31,8 @@ public class Util {
         Vector2 offset = new Vector2(offsetX, offsetY);
         a2.applyTo(offset);
 
-        float posX = body.getPosition().x + offset.x;
-        float posY = body.getPosition().y + offset.y;
+        float posX = body.getPosition().x + offset.x - 0.5f;
+        float posY = body.getPosition().y + offset.y - 0.5f;
 
         LD40.s.batch.draw(LD40.s.getSprite(spriteName), posX, posY, 0.5f, 0.5f, 1, 1, sizeX, sizeY, rot + angleOffsetDegrees);
     }

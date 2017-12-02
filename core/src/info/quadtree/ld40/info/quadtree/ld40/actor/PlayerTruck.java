@@ -92,17 +92,30 @@ public class PlayerTruck extends Actor implements InputProcessor {
 
         bed = Util.createBodyOfType(BodyDef.BodyType.DynamicBody);
 
+
+        FixtureDef fd = new FixtureDef();
         ps = new PolygonShape();
         ps.setAsBox(BED_LENGTH / 2, BED_HEIGHT / 2);
-        bed.createFixture(ps, 1);
+        fd.shape = ps;
+        fd.density = 1;
+        fd.friction = 2;
+        bed.createFixture(fd);
 
+        fd = new FixtureDef();
         ps = new PolygonShape();
-        ps.setAsBox(BED_ENDS_HEIGHT / 2, BED_HEIGHT / 2, new Vector2(BED_LENGTH / 2 + BED_ENDS_EXTRA_SPREAD, BED_ENDS_HEIGHT / 2), 90 - BED_ENDS_OFFSET_ANGLE * MathUtils.degreesToRadians);
-        bed.createFixture(ps, 1);
+        ps.setAsBox(BED_ENDS_HEIGHT / 2, BED_HEIGHT / 2, new Vector2(BED_LENGTH / 2 + BED_ENDS_EXTRA_SPREAD, BED_ENDS_HEIGHT / 2), (90 - BED_ENDS_OFFSET_ANGLE) * MathUtils.degreesToRadians);
+        fd.shape = ps;
+        fd.density = 1;
+        fd.friction = 2;
+        bed.createFixture(fd);
 
+        fd = new FixtureDef();
         ps = new PolygonShape();
-        ps.setAsBox(BED_ENDS_HEIGHT / 2, BED_HEIGHT / 2, new Vector2(-BED_LENGTH / 2 - BED_ENDS_EXTRA_SPREAD, BED_ENDS_HEIGHT / 2), 90 + BED_ENDS_OFFSET_ANGLE * MathUtils.degreesToRadians);
-        bed.createFixture(ps, 1);
+        ps.setAsBox(BED_ENDS_HEIGHT / 2, BED_HEIGHT / 2, new Vector2(-BED_LENGTH / 2 - BED_ENDS_EXTRA_SPREAD, BED_ENDS_HEIGHT / 2), (90 + BED_ENDS_OFFSET_ANGLE) * MathUtils.degreesToRadians);
+        fd.shape = ps;
+        fd.density = 1;
+        fd.friction = 2;
+        bed.createFixture(fd);
 
         RevoluteJointDef rjd = new RevoluteJointDef();
         rjd.bodyA = chassis;
