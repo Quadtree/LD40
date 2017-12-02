@@ -6,16 +6,18 @@
 * Level with a trailer and a downhill slope
 
 # TODO
-* Allow tilting of bed
 * Create level 2
 * Create level 3
 * Create level 4
 * Create level 5
+* Add level bounds
+* Controller support
 * Sound
 * Main menu
 * Music
 
 # Done
+* Allow tilting of bed
 * Fix bug with bed not working correctly
 * Increase cargo friction
 * High score table

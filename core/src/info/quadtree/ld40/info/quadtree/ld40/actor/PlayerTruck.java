@@ -6,6 +6,7 @@ import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
+import com.badlogic.gdx.physics.box2d.joints.RevoluteJoint;
 import com.badlogic.gdx.physics.box2d.joints.RevoluteJointDef;
 import info.quadtree.ld40.LD40;
 import info.quadtree.ld40.Util;
@@ -20,12 +21,17 @@ public class PlayerTruck extends Actor implements InputProcessor {
 
     Body bed;
 
+    RevoluteJoint bedJoint;
+
     final static float BED_LENGTH = 5f;
     final static float BED_HEIGHT = 0.25f;
     final static float BED_ENDS_EXTRA_SPREAD = 0.2f;
 
     boolean accelLeft;
     boolean accelRight;
+
+    boolean liftBed;
+    boolean lowerBed;
 
     public float getLengthBehind(){
         return 5f;
@@ -36,6 +42,9 @@ public class PlayerTruck extends Actor implements InputProcessor {
         if (keycode == Input.Keys.LEFT || keycode == Input.Keys.A) accelLeft = true;
         if (keycode == Input.Keys.RIGHT || keycode == Input.Keys.D) accelRight = true;
 
+        if (keycode == Input.Keys.UP || keycode == Input.Keys.W) liftBed = true;
+        if (keycode == Input.Keys.DOWN || keycode == Input.Keys.S) lowerBed = true;
+
         return false;
     }
 
@@ -43,6 +52,9 @@ public class PlayerTruck extends Actor implements InputProcessor {
     public boolean keyUp(int keycode) {
         if (keycode == Input.Keys.LEFT || keycode == Input.Keys.A) accelLeft = false;
         if (keycode == Input.Keys.RIGHT || keycode == Input.Keys.D) accelRight = false;
+
+        if (keycode == Input.Keys.UP || keycode == Input.Keys.W) liftBed = false;
+        if (keycode == Input.Keys.DOWN || keycode == Input.Keys.S) lowerBed = false;
 
         return false;
     }
@@ -125,7 +137,7 @@ public class PlayerTruck extends Actor implements InputProcessor {
         rjd.enableLimit = true;
         rjd.collideConnected = false;
 
-        LD40.s.cgs.world.createJoint(rjd);
+        bedJoint = (RevoluteJoint)LD40.s.cgs.world.createJoint(rjd);
 
         Gdx.input.setInputProcessor(this);
     }
@@ -187,6 +199,18 @@ public class PlayerTruck extends Actor implements InputProcessor {
         frontWheel.setAngularVelocity(-enginePower * accel);
         rearWheel.setAngularVelocity(-enginePower * accel);
         rearWheel2.setAngularVelocity(-enginePower * accel);
+
+        float bedMovement = 0;
+
+        if (liftBed && !lowerBed) bedMovement = 1;
+        if (!liftBed && lowerBed) bedMovement = -1;
+
+        float bedCenter = (bedJoint.getUpperLimit() + bedJoint.getLowerLimit()) / 2;
+
+        bedCenter += bedMovement * 0.01f;
+        bedCenter = MathUtils.clamp(bedCenter, -0.2f, .2f);
+
+        bedJoint.setLimits(bedCenter - 0.01f, bedCenter + 0.01f);
     }
 
     @Override
