@@ -32,7 +32,7 @@ public class HtmlLauncher extends GwtApplication {
 
                         @Override
                         public void log(String msg) {
-                                Logger.getLogger("LD40").log(Level.SEVERE, "UL: " + msg);
+                                Logger.getLogger("LD40").log(Level.INFO, "UL: " + msg);
                         }
                 };
                 return new LD40();
