@@ -52,12 +52,15 @@ public class EndFlag extends Flag {
                 public void handleHttpResponse(Net.HttpResponse httpResponse) {
                     try {
                         Json js = new Json();
-                        HighScores highScores = js.fromJson(HighScores.class, httpResponse.getResultAsStream());
+                        HighScores highScores = js.fromJson(HighScores.class, httpResponse.getResultAsString());
 
-                        Util.log( "" + httpResponse.getStatus().getStatusCode());
-                        Util.log( "" + highScores);
+                        Util.log("" + httpResponse.getStatus().getStatusCode());
+                        Util.log("" + highScores);
 
                         LD40.s.cgs.highScores = highScores;
+                    }catch (RuntimeException t){
+                        Util.log( "Error processing response from server (RE): " + t);
+                        throw t;
                     } catch (Throwable t){
                         Util.log( "Error processing response from server: " + t);
                     }
