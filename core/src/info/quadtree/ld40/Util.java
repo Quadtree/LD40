@@ -49,4 +49,14 @@ public class Util {
 
 
     }*/
+
+    public interface FloatFormatter {
+        String formatFloat(float f);
+    }
+
+    public static FloatFormatter defaultFloatFormatter = null;
+
+    public static String formatFloat(float f){
+        return defaultFloatFormatter.formatFloat(f);
+    }
 }

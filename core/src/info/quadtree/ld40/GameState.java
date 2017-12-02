@@ -112,12 +112,12 @@ public class GameState {
         defaultFont.draw(LD40.s.batch, "FPS: " + Gdx.graphics.getFramesPerSecond(), 20, 768 - 20);
 
         if (finalScore == null) {
-            defaultFont.draw(LD40.s.batch, String.format("Time: %.1f", gameTime), 20, 768 - 40);
-            defaultFont.draw(LD40.s.batch, String.format("Time Bonus: +%d%%", (int) (getTimeBonus() * 100)), 20, 768 - 60);
+            defaultFont.draw(LD40.s.batch, "Time: " + Util.formatFloat(gameTime), 20, 768 - 40);
+            defaultFont.draw(LD40.s.batch, "Time Bonus: +" + (int) (getTimeBonus() * 100) + "%", 20, 768 - 60);
         } else {
-            defaultFont.draw(LD40.s.batch, String.format("Time: %.1f", gameTime), 450, 350);
-            defaultFont.draw(LD40.s.batch, String.format("Time Bonus: +%d%%", (int) (getTimeBonus() * 100)), 450, 330);
-            defaultFont.draw(LD40.s.batch, String.format("Score: %d", finalScore), 450, 310);
+            defaultFont.draw(LD40.s.batch, "Time: " + Util.formatFloat(gameTime), 450, 350);
+            defaultFont.draw(LD40.s.batch, "Time Bonus: +" + (int) (getTimeBonus() * 100) + "%", 450, 330);
+            defaultFont.draw(LD40.s.batch, "Score: " + finalScore, 450, 310);
         }
 
         LD40.s.batch.end();
