@@ -8,5 +8,5 @@ public abstract class Actor {
     public void render(){}
     public void backgroundRender(){}
 
-    public abstract Vector2 getPosition();
+    public Vector2 getPosition(){ return new Vector2(0,0); }
 }

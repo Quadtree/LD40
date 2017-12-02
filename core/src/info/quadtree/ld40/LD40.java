@@ -53,8 +53,6 @@ public class LD40 extends ApplicationAdapter {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         cgs.render();
-
-        System.err.println("FPS: " + Gdx.graphics.getFramesPerSecond());
 	}
 	
 	@Override

@@ -58,7 +58,7 @@ public class GameState {
     public void render(){
         int updates = 0;
 
-        while(updates < 16 && System.currentTimeMillis() > msDone){
+        while(updates < 1 && System.currentTimeMillis() > msDone){
             update();
             updates++;
         }
@@ -71,12 +71,20 @@ public class GameState {
 
         LD40.s.batch.setProjectionMatrix(backgroundCam.combined);
         LD40.s.batch.begin();
+
+
+
         for (Actor a : actors) a.backgroundRender();
         LD40.s.batch.end();
 
 
         LD40.s.batch.setProjectionMatrix(cam.combined);
         LD40.s.batch.begin();
+
+        final float groundBlockWidth = 64 / 30f;
+        for (int i=0;i<1000;++i){
+            LD40.s.batch.draw(LD40.s.getSprite("ground1"), groundBlockWidth*i, - groundBlockWidth + 1.5f, groundBlockWidth, groundBlockWidth);
+        }
 
         for (int i=0;i<actors.size();++i){
             if (actors.get(i).keep())
