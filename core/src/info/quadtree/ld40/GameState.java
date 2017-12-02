@@ -27,7 +27,7 @@ public class GameState implements ContactListener {
 
     BitmapFont defaultFont = new BitmapFont();
 
-    private BaseLevel baseLevel;
+    public BaseLevel baseLevel;
 
     public float getTimeBonus(){
         float secondsOvertime = Math.max(gameTime - 30, 0);

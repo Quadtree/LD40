@@ -6,7 +6,7 @@
 * Level with a trailer and a downhill slope
 
 # TODO
-* Create level 1
+
 * High score table
 * Increase cargo friction
 * Fix bug with bed not working correctly
@@ -20,5 +20,6 @@
 * Music
 
 # Done
+* Create level 1
 * Cargo destroyed when it touches the ground
 * Add in named levels
