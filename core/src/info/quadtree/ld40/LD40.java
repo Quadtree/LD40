@@ -29,12 +29,15 @@ public class LD40 extends ApplicationAdapter {
 	public GameState cgs;
 
 	public BaseLevel levelToLoad = null;
+	public boolean unloadCurrentLevel = false;
 
 	public static LD40 s;
 
 	Stage uiStage;
 
 	Map<String, Sprite> spritePool = new HashMap<String, Sprite>();
+
+	public Label mainMenuMessage;
 
 	final static public boolean DEBUG_MODE = false;
 
@@ -60,6 +63,8 @@ public class LD40 extends ApplicationAdapter {
 
         Label.LabelStyle labelSkin = new Label.LabelStyle();
         labelSkin.font = new BitmapFont(Gdx.files.internal("elec-24.fnt"));
+
+        mainMenuMessage = new Label("", labelSkin);
 
         TextButton.TextButtonStyle textButtonStyle = new TextButton.TextButtonStyle();
         textButtonStyle.font = new BitmapFont(Gdx.files.internal("elec-24.fnt"));
@@ -104,15 +109,18 @@ public class LD40 extends ApplicationAdapter {
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-		if (levelToLoad != null){
+		if (levelToLoad != null || unloadCurrentLevel){
+            unloadCurrentLevel = false;
 			if (cgs != null){
 				cgs.dispose();
 				cgs = null;
 			}
 
-			cgs = new GameState(levelToLoad);
-			cgs.init();
-			levelToLoad = null;
+			if (levelToLoad != null) {
+                cgs = new GameState(levelToLoad);
+                cgs.init();
+                levelToLoad = null;
+            }
 		}
 
 		if (cgs != null) {

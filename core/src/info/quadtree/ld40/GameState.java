@@ -127,6 +127,7 @@ public class GameState implements ContactListener, InputProcessor {
         LD40.s.batch.begin();
 
         float LINE_SPACING = 25;
+        float TEXT_LEFT = 400;
 
         if (LD40.DEBUG_MODE) {
             defaultFont.setColor(Color.WHITE);
@@ -141,25 +142,29 @@ public class GameState implements ContactListener, InputProcessor {
         } else {
             int y = 700;
             defaultFont.setColor(Color.WHITE);
-            defaultFont.draw(LD40.s.batch, baseLevel.getName(), 450, y -= LINE_SPACING);
-            defaultFont.draw(LD40.s.batch, "Time: " + Util.formatFloat(gameTime), 450, y -= LINE_SPACING);
-            defaultFont.draw(LD40.s.batch, "Time Bonus: +" + (int) (getTimeBonus() * 100) + "%", 450, y -= LINE_SPACING);
-            defaultFont.draw(LD40.s.batch, "Score: " + finalScore, 450, y -= LINE_SPACING);
+            defaultFont.draw(LD40.s.batch, baseLevel.getName(), TEXT_LEFT, y -= LINE_SPACING);
+            defaultFont.draw(LD40.s.batch, "Time: " + Util.formatFloat(gameTime), TEXT_LEFT, y -= LINE_SPACING);
+            defaultFont.draw(LD40.s.batch, "Time Bonus: +" + (int) (getTimeBonus() * 100) + "%", TEXT_LEFT, y -= LINE_SPACING);
+            defaultFont.draw(LD40.s.batch, "Score: " + finalScore, TEXT_LEFT, y -= LINE_SPACING);
 
             if (highScores != null) {
                 y -= LINE_SPACING;
-                defaultFont.draw(LD40.s.batch, "High Score Table", 450, y -= LINE_SPACING);
+                defaultFont.draw(LD40.s.batch, "High Score Table", TEXT_LEFT, y -= LINE_SPACING);
 
                 for (HighScoreEntry ent : highScores.HighScores){
                     defaultFont.setColor(ent.Score.equals(finalScore) ? Color.GREEN : Color.LIGHT_GRAY);
-                    defaultFont.draw(LD40.s.batch, "" + ent.Score, 450, y -= LINE_SPACING);
+                    defaultFont.draw(LD40.s.batch, "" + ent.Score, TEXT_LEFT, y -= LINE_SPACING);
                 }
 
             }
 
             y -= LINE_SPACING;
             defaultFont.setColor(Color.WHITE);
-            defaultFont.draw(LD40.s.batch, "Press N for next level", 450, y -= LINE_SPACING);
+            if (baseLevel.makeNextLevel() != null) {
+                defaultFont.draw(LD40.s.batch, "Press N for next level", TEXT_LEFT, y -= LINE_SPACING);
+            } else {
+                defaultFont.draw(LD40.s.batch, "The end! Press N to return to the main menu", TEXT_LEFT, y -= LINE_SPACING);
+            }
 
             Gdx.input.setInputProcessor(this);
         }
@@ -277,6 +282,7 @@ public class GameState implements ContactListener, InputProcessor {
     public boolean keyDown(int keycode) {
         if (keycode == Input.Keys.N){
             LD40.s.levelToLoad = baseLevel.makeNextLevel();
+            LD40.s.unloadCurrentLevel = true;
         }
 
         return false;
