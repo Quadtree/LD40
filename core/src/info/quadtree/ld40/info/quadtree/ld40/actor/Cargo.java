@@ -30,7 +30,7 @@ public class Cargo extends Actor {
 
         addFixtures();
 
-        LD40.s.cgs.addActor(new CargoPole(new Vector2(x + width / 2, y + width / 2)));
+        LD40.s.cgs.addActor(new CargoPole(new Vector2(x, y)));
     }
 
     public void destroy(){
