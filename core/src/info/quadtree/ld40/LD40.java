@@ -10,11 +10,13 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable;
+import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 import info.quadtree.ld40.info.quadtree.ld40.level.*;
 
 import java.util.HashMap;
@@ -100,6 +102,10 @@ public class LD40 extends ApplicationAdapter {
 
         mainMenuTable.add(new Label("Made by Quadtree for Ludum Dare 40", labelSkin)).expand().right().bottom().pad(10);
         mainMenuTable.row();
+
+        Image img = new Image(new SpriteDrawable(getSprite("sky")));
+        img.setFillParent(true);
+        uiStage.addActor(img);
 
 		uiStage.addActor(mainMenuTable);
 	}

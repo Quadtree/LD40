@@ -40,7 +40,7 @@ public class Level5 extends BaseLevel {
             LD40.s.cgs.addActor(new Crate(i, LD40.s.cgs.getTerrainHeightAt(i)+15));
         }
         for (int i=120;i<140;i += 9){
-            LD40.s.cgs.addActor(new LongCargo(i, LD40.s.cgs.getTerrainHeightAt(i)+15));
+            LD40.s.cgs.addActor(new LongCargo(i, LD40.s.cgs.getTerrainHeightAt(i)+22));
         }
 
         generateRandomMountains(5);
