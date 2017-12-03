@@ -1,5 +1,6 @@
 package info.quadtree.ld40.info.quadtree.ld40.actor;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Affine2;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
@@ -46,7 +47,7 @@ public abstract class Cargo extends Actor {
         FixtureDef fd = new FixtureDef();
         fd.shape = ps;
         fd.friction = 2;
-        fd.density = 1;
+        fd.density = getDensity();
 
         body.createFixture(fd);
     }
@@ -81,7 +82,7 @@ public abstract class Cargo extends Actor {
                 Vector2 newPos = new Vector2(MathUtils.random(-width / 2, width / 2), MathUtils.random(-height / 2, height / 2));
                 a2.applyTo(newPos);
                 newPos.add(getPosition());
-                LD40.s.cgs.addActor(new Debris(newPos));
+                LD40.s.cgs.addActor(new Debris(newPos, getDebrisColor()));
             }
 
             Util.playSound("Boom" + MathUtils.random(0, 2), 1);
@@ -107,4 +108,7 @@ public abstract class Cargo extends Actor {
             return new Vector2(-1000,-1000);
         }
     }
+
+    public Color getDebrisColor(){ return Color.WHITE; }
+    public float getDensity(){ return 1; }
 }

@@ -9,4 +9,9 @@ public class LongCargo extends Cargo {
     public float getScore() {
         return 40;
     }
+
+    @Override
+    public float getDensity() {
+        return 3;
+    }
 }
