@@ -7,10 +7,10 @@
 
 # TODO
 * Sound
-* Main menu
 * Music
 
 # Done
+* Main menu
 * Consider switching fonts
 * Cargo explodes on death
 * Cab, strut holding bed

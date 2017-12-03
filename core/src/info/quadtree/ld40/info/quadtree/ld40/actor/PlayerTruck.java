@@ -54,6 +54,10 @@ public class PlayerTruck extends Actor implements InputProcessor {
         if (keycode == Input.Keys.UP || keycode == Input.Keys.W) liftBed = true;
         if (keycode == Input.Keys.DOWN || keycode == Input.Keys.S) lowerBed = true;
 
+        if (keycode == Input.Keys.R){
+            LD40.s.levelToLoad = LD40.s.cgs.baseLevel;
+        }
+
         return false;
     }
 

@@ -128,8 +128,10 @@ public class GameState implements ContactListener, InputProcessor {
 
         float LINE_SPACING = 25;
 
-        defaultFont.setColor(Color.WHITE);
-        defaultFont.draw(LD40.s.batch, "FPS: " + Gdx.graphics.getFramesPerSecond(), 20, 768 - LINE_SPACING*2);
+        if (LD40.DEBUG_MODE) {
+            defaultFont.setColor(Color.WHITE);
+            defaultFont.draw(LD40.s.batch, "FPS: " + Gdx.graphics.getFramesPerSecond(), 20, 768 - LINE_SPACING * 2);
+        }
 
         if (finalScore == null) {
             defaultFont.setColor(Color.WHITE);
