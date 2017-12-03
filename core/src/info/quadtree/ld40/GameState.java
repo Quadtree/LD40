@@ -38,7 +38,7 @@ public class GameState implements ContactListener, InputProcessor {
     public BaseLevel baseLevel;
 
     public float getTimeBonus(){
-        float secondsOvertime = Math.max(gameTime - 30, 0);
+        float secondsOvertime = Math.max(gameTime - 60, 0);
 
         float bonus = 0.5f * (float)Math.pow(0.5f, secondsOvertime / 30);
 
@@ -260,16 +260,17 @@ public class GameState implements ContactListener, InputProcessor {
     float height = 0;
 
     public float getLowTerrainHeightAt(float x){
-        return Math.min(getTerrainHeightAt(x - 1), getTerrainHeightAt(x + 1));
+        return Math.max(getTerrainHeightAt(x - 1f), getTerrainHeightAt(x + 1f));
     }
 
     public float getTerrainHeightAt(float x){
+        height = 0;
         world.rayCast(new RayCastCallback() {
             @Override
             public float reportRayFixture(Fixture fixture, Vector2 point, Vector2 normal, float fraction) {
-                height = point.y;
+                height = Math.max(height, point.y);
 
-                return 0;
+                return 1;
             }
         }, x, 10000, x, 0);
 

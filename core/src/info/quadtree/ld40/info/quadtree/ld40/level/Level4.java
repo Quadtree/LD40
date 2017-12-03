@@ -13,16 +13,16 @@ public class Level4 extends BaseLevel {
     public void init() {
         super.init();
 
-        for (int i=30;i<50;i += 12){
-            LD40.s.cgs.addActor(new Pipe(i, 20));
-        }
+        //for (int i=30;i<50;i += 12){
+        //    LD40.s.cgs.addActor(new Pipe(i, 20));
+        //}
 
         for (int i=170;i<200;i += 16){
             LD40.s.cgs.addActor(new Pipe(i, 20));
         }
 
         for (int i=20;i<180;i += 5){
-            LD40.s.cgs.addActor(new Crate(i, 22));
+            LD40.s.cgs.addActor(new Crate(i, 12 + i / 10));
         }
 
         Random rand = new Random(3945845);
