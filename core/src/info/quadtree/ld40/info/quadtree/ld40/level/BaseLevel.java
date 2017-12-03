@@ -31,4 +31,6 @@ public abstract class BaseLevel {
     public boolean playerHasTrailer(){ return false; }
 
     public abstract BaseLevel makeNextLevel();
+
+    public float getSkyBrightness(){ return 1; }
 }

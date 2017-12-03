@@ -6,6 +6,7 @@ import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
@@ -84,11 +85,7 @@ public class GameState implements ContactListener, InputProcessor {
 
         cam.translate((pc.getPosition().x - cam.position.x) / 20f, 0);
 
-        float camTrgY = 25.6f / 2;
-        float pcY = pc.getPosition().y + 7f;
-        if (pcY > 14f){
-            camTrgY = pcY;
-        }
+        float camTrgY = getCamTrgY();
 
         cam.translate(0, (camTrgY - cam.position.y) / 20f);
 
@@ -97,10 +94,27 @@ public class GameState implements ContactListener, InputProcessor {
         backgroundCam.position.x = cam.position.x / 5f;
         backgroundCam.update();
 
+        LD40.s.batch.setProjectionMatrix(uiCam.combined);
+        LD40.s.batch.begin();
+
+        Sprite sp = LD40.s.getSprite("sky");
+        sp.setSize(1024, 768);
+        sp.setPosition(0, 0);
+        sp.setColor(new Color(baseLevel.getSkyBrightness(), baseLevel.getSkyBrightness(), baseLevel.getSkyBrightness(), 1f));
+        sp.draw(LD40.s.batch);
+
+        sp = LD40.s.getSprite("stars1");
+        sp.setSize(1024, 768);
+        sp.setPosition(0, 0);
+        sp.setColor(new Color(1f, 1f, 1f, MathUtils.clamp((1 - baseLevel.getSkyBrightness()) * 2 - 0.5f, 0, 1)));
+        sp.draw(LD40.s.batch);
+
+        LD40.s.batch.end();
+
         LD40.s.batch.setProjectionMatrix(backgroundCam.combined);
         LD40.s.batch.begin();
 
-        LD40.s.batch.draw(LD40.s.getSprite("sky"), -1000, 0, 5000, 25.6f);
+
 
         for (Actor a : actors) a.backgroundRender();
         LD40.s.batch.end();
@@ -178,6 +192,15 @@ public class GameState implements ContactListener, InputProcessor {
         //dbg.render(world, cam.combined);
     }
 
+    protected float getCamTrgY() {
+        float camTrgY = 25.6f / 2;
+        float pcY = pc.getPosition().y + 7f;
+        if (pcY > 14f){
+            camTrgY = pcY;
+        }
+        return camTrgY;
+    }
+
     public void dispose(){
         world.dispose();
         world = null;
@@ -213,8 +236,7 @@ public class GameState implements ContactListener, InputProcessor {
         addActor(pc);
 
         cam.setToOrtho(false, 25.6f * (1024f / 768f), 25.6f);
-        cam.position.x = pc.getPosition().x;
-        cam.position.y = 25.6f / 2;
+
 
         backgroundCam.setToOrtho(false, 25.6f * (1024f / 768f), 25.6f);
         backgroundCam.position.x = 25.6f * (1024f / 768f) / 2;
@@ -226,6 +248,9 @@ public class GameState implements ContactListener, InputProcessor {
         for (int i=0;i<30;++i){
             world.step(0.1f, 1, 1);
         }
+
+        cam.position.x = pc.getPosition().x;
+        cam.position.y = getCamTrgY();
 
         simStarted = true;
     }

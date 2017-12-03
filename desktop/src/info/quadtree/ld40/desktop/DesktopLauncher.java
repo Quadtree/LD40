@@ -22,7 +22,10 @@ public class DesktopLauncher {
 			}
 		};
 
-		TexturePacker.processIfModified("../../raw_assets/", ".", "default");
+		TexturePacker.Settings s = new TexturePacker.Settings();
+		s.maxHeight = 2048;
+		s.maxWidth = 2048;
+		TexturePacker.processIfModified(s, "../../raw_assets/", ".", "default");
 
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		config.width = 1024;

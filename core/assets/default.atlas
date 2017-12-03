@@ -1,40 +1,40 @@
 
 default.png
-size: 1024,1024
+size: 2048,2048
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
 cab
   rotate: false
-  xy: 2, 128
+  xy: 1542, 1430
   size: 45, 60
   orig: 45, 60
   offset: 0, 0
   index: -1
 debris
   rotate: false
-  xy: 304, 272
+  xy: 1330, 1042
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 flag
   rotate: false
-  xy: 616, 722
+  xy: 1542, 1492
   size: 64, 80
   orig: 64, 80
   offset: 0, 0
   index: -1
 flagpole
   rotate: false
-  xy: 2, 190
+  xy: 2, 208
   size: 64, 80
   orig: 64, 80
   offset: 0, 0
   index: -1
 ground1
   rotate: false
-  xy: 616, 656
+  xy: 616, 738
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
@@ -53,16 +53,23 @@ mountain1
   orig: 512, 512
   offset: 0, 0
   index: -1
+mountain2
+  rotate: false
+  xy: 1028, 1060
+  size: 512, 512
+  orig: 512, 512
+  offset: 0, 0
+  index: -1
 panel1
   rotate: false
-  xy: 682, 738
+  xy: 1028, 976
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
 pipe1
   rotate: false
-  xy: 2, 272
+  xy: 1028, 1042
   size: 300, 16
   orig: 300, 16
   offset: 0, 0
@@ -83,28 +90,22 @@ sky
   index: -1
 solidpole
   rotate: false
-  xy: 616, 646
+  xy: 2, 198
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
   index: -1
-wheel1
+stars1
   rotate: false
-  xy: 68, 222
-  size: 48, 48
-  orig: 48, 48
+  xy: 2, 804
+  size: 1024, 768
+  orig: 1024, 768
   offset: 0, 0
   index: -1
-
-default2.png
-size: 1024,1024
-format: RGBA8888
-filter: Nearest,Nearest
-repeat: none
-mountain2
+wheel1
   rotate: false
-  xy: 2, 2
-  size: 512, 512
-  orig: 512, 512
+  xy: 1608, 1524
+  size: 48, 48
+  orig: 48, 48
   offset: 0, 0
   index: -1

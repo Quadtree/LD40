@@ -46,4 +46,9 @@ public class Level2 extends BaseLevel {
     public BaseLevel makeNextLevel() {
         return new Level3();
     }
+
+    @Override
+    public float getSkyBrightness() {
+        return 0.8f;
+    }
 }

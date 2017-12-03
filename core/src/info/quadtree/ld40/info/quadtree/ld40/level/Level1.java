@@ -38,4 +38,6 @@ public class Level1 extends BaseLevel {
     public BaseLevel makeNextLevel() {
         return new Level2();
     }
+
+
 }
