@@ -6,10 +6,10 @@
 * Level with a trailer and a downhill slope
 
 # TODO
-* Sound
-* Music
 
 # Done
+* Sound
+* Music
 * Main menu
 * Consider switching fonts
 * Cargo explodes on death
