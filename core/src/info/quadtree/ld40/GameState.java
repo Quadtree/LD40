@@ -126,32 +126,38 @@ public class GameState implements ContactListener, InputProcessor {
         LD40.s.batch.setProjectionMatrix(uiCam.combined);
         LD40.s.batch.begin();
 
+        float LINE_SPACING = 25;
+
         defaultFont.setColor(Color.WHITE);
-        defaultFont.draw(LD40.s.batch, "FPS: " + Gdx.graphics.getFramesPerSecond(), 20, 768 - 40);
+        defaultFont.draw(LD40.s.batch, "FPS: " + Gdx.graphics.getFramesPerSecond(), 20, 768 - LINE_SPACING*2);
 
         if (finalScore == null) {
             defaultFont.setColor(Color.WHITE);
-            defaultFont.draw(LD40.s.batch, baseLevel.getName(), 20, 768 - 20);
-            defaultFont.draw(LD40.s.batch, "Time: " + Util.formatFloat(gameTime), 20, 768 - 60);
-            defaultFont.draw(LD40.s.batch, "Time Bonus: +" + (int) (getTimeBonus() * 100) + "%", 20, 768 - 80);
+            defaultFont.draw(LD40.s.batch, baseLevel.getName(), 20, 768 - LINE_SPACING);
+            defaultFont.draw(LD40.s.batch, "Time: " + Util.formatFloat(gameTime), 20, 768 - LINE_SPACING*3);
+            defaultFont.draw(LD40.s.batch, "Time Bonus: +" + (int) (getTimeBonus() * 100) + "%", 20, 768 - LINE_SPACING*4);
         } else {
             int y = 700;
             defaultFont.setColor(Color.WHITE);
-            defaultFont.draw(LD40.s.batch, baseLevel.getName(), 450, y -= 20);
-            defaultFont.draw(LD40.s.batch, "Time: " + Util.formatFloat(gameTime), 450, y -= 20);
-            defaultFont.draw(LD40.s.batch, "Time Bonus: +" + (int) (getTimeBonus() * 100) + "%", 450, y -= 20);
-            defaultFont.draw(LD40.s.batch, "Score: " + finalScore, 450, y -= 20);
+            defaultFont.draw(LD40.s.batch, baseLevel.getName(), 450, y -= LINE_SPACING);
+            defaultFont.draw(LD40.s.batch, "Time: " + Util.formatFloat(gameTime), 450, y -= LINE_SPACING);
+            defaultFont.draw(LD40.s.batch, "Time Bonus: +" + (int) (getTimeBonus() * 100) + "%", 450, y -= LINE_SPACING);
+            defaultFont.draw(LD40.s.batch, "Score: " + finalScore, 450, y -= LINE_SPACING);
 
             if (highScores != null) {
-                y -= 20;
-                defaultFont.draw(LD40.s.batch, "High Score Table", 450, y -= 20);
+                y -= LINE_SPACING;
+                defaultFont.draw(LD40.s.batch, "High Score Table", 450, y -= LINE_SPACING);
 
                 for (HighScoreEntry ent : highScores.HighScores){
                     defaultFont.setColor(ent.Score.equals(finalScore) ? Color.GREEN : Color.LIGHT_GRAY);
-                    defaultFont.draw(LD40.s.batch, "" + ent.Score, 450, y -= 20);
+                    defaultFont.draw(LD40.s.batch, "" + ent.Score, 450, y -= LINE_SPACING);
                 }
 
             }
+
+            y -= LINE_SPACING;
+            defaultFont.setColor(Color.WHITE);
+            defaultFont.draw(LD40.s.batch, "Press N for next level", 450, y -= LINE_SPACING);
 
             Gdx.input.setInputProcessor(this);
         }
