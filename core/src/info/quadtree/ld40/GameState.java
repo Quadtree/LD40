@@ -332,6 +332,8 @@ public class GameState implements ContactListener, InputProcessor {
             LD40.s.unloadCurrentLevel = true;
         }
 
+        if (keycode == Input.Keys.T) Util.takeScreenshot();
+
         return false;
     }
 

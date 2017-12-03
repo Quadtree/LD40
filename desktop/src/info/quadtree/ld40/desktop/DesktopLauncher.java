@@ -1,11 +1,20 @@
 package info.quadtree.ld40.desktop;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
+import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.graphics.Pixmap;
+import com.badlogic.gdx.graphics.PixmapIO;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.tools.texturepacker.TexturePacker;
+import com.badlogic.gdx.utils.BufferUtils;
+import com.badlogic.gdx.utils.ScreenUtils;
 import info.quadtree.ld40.LD40;
 import info.quadtree.ld40.Util;
+
+import java.util.Date;
+import java.util.logging.FileHandler;
 
 public class DesktopLauncher {
 	public static void main (String[] arg) {
@@ -24,6 +33,17 @@ public class DesktopLauncher {
 			@Override
 			public double getPerfTime() {
 				return System.nanoTime() / 1000.0 / 1000.0 / 1000.0;
+			}
+
+			@Override
+			public void takeScreenshot() {
+				byte[] b = ScreenUtils.getFrameBufferPixels(0, 0, Gdx.graphics.getBackBufferWidth(), Gdx.graphics.getBackBufferHeight(), true);
+				Pixmap pm = new Pixmap(Gdx.graphics.getBackBufferWidth(), Gdx.graphics.getBackBufferHeight(), Pixmap.Format.RGBA8888);
+				BufferUtils.copy(b, 0, pm.getPixels(), b.length);
+				Gdx.files.external("info.quadtree.ld40").mkdirs();
+				FileHandle xf = Gdx.files.external("info.quadtree.ld40/screenshot_" + System.currentTimeMillis() + ".png");
+				PixmapIO.writePNG(xf, pm);
+				pm.dispose();
 			}
 		};
 

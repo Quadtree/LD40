@@ -2,6 +2,7 @@ package info.quadtree.ld40;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
@@ -10,8 +11,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
-import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.*;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -121,6 +121,18 @@ public class LD40 extends ApplicationAdapter {
         uiStage.addActor(img);
 
 		uiStage.addActor(mainMenuTable);
+
+		uiStage.addListener(new EventListener() {
+			@Override
+			public boolean handle(Event event) {
+				if (event instanceof InputEvent){
+					if (((InputEvent) event).getKeyCode() == Input.Keys.T && ((InputEvent) event).getType() == InputEvent.Type.keyDown){
+						Util.takeScreenshot();
+					}
+				}
+				return false;
+			}
+		});
 
 		Music mainMusic = Gdx.audio.newMusic(Gdx.files.internal("harmonicas.ogg"));
 		mainMusic.setVolume(0.3f);

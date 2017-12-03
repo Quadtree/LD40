@@ -59,6 +59,7 @@ public class Util {
         String formatFloat(float f);
         void log(String msg);
         double getPerfTime();
+        void takeScreenshot();
     }
 
     public static FloatFormatter defaultFloatFormatter = null;
@@ -85,5 +86,9 @@ public class Util {
 
     public static double getPerfTime(){
         return defaultFloatFormatter.getPerfTime();
+    }
+
+    public static void takeScreenshot(){
+        defaultFloatFormatter.takeScreenshot();
     }
 }
