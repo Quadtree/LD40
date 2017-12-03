@@ -3,6 +3,8 @@ package info.quadtree.ld40.info.quadtree.ld40.actor;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.controllers.Controller;
+import com.badlogic.gdx.controllers.Controllers;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
@@ -10,6 +12,9 @@ import com.badlogic.gdx.physics.box2d.joints.RevoluteJoint;
 import com.badlogic.gdx.physics.box2d.joints.RevoluteJointDef;
 import info.quadtree.ld40.LD40;
 import info.quadtree.ld40.Util;
+
+import java.util.HashSet;
+import java.util.Set;
 
 public class PlayerTruck extends Actor implements InputProcessor {
     public static final float BED_ENDS_HEIGHT = 2f;
@@ -221,6 +226,17 @@ public class PlayerTruck extends Actor implements InputProcessor {
         //rearWheel.applyTorque(-500, true);
 
         float accel = 0;
+        float bedMovement = 0;
+
+        try {
+            for (Controller con : Controllers.getControllers()) {
+                //System.err.println("0: " + con.getAxis(0));
+                //System.err.println(con.getAxis(1));
+
+                accel = con.getAxis(1);
+                bedMovement = -con.getAxis(2);
+            }
+        } catch (Throwable t){}
 
         if (accelLeft && !accelRight) accel = -1;
         if (accelRight && !accelLeft) accel = 1;
@@ -234,7 +250,7 @@ public class PlayerTruck extends Actor implements InputProcessor {
         rearWheel.setAngularVelocity(-enginePower * accel);
         rearWheel2.setAngularVelocity(-enginePower * accel);
 
-        float bedMovement = 0;
+
 
         if (liftBed && !lowerBed) bedMovement = 1;
         if (!liftBed && lowerBed) bedMovement = -1;
@@ -245,6 +261,8 @@ public class PlayerTruck extends Actor implements InputProcessor {
         bedCenter = MathUtils.clamp(bedCenter, -0.2f, .2f);
 
         bedJoint.setLimits(bedCenter - 0.01f, bedCenter + 0.01f);
+
+
     }
 
     @Override
