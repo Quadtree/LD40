@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import info.quadtree.ld40.info.quadtree.ld40.actor.*;
@@ -225,7 +226,11 @@ public class GameState implements ContactListener, InputProcessor {
         for (int i=0;i<30;++i){
             world.step(0.1f, 1, 1);
         }
+
+        simStarted = true;
     }
+
+    boolean simStarted = false;
 
     float height = 0;
 
@@ -262,6 +267,16 @@ public class GameState implements ContactListener, InputProcessor {
             if (ud2 instanceof Cargo){
                 ((Cargo) ud2).destroy();
             }
+        }
+
+        if (simStarted) {
+            float massA = contact.getFixtureA().getBody().getMass();
+            float massB = contact.getFixtureB().getBody().getMass();
+
+            float relSpeed = contact.getFixtureA().getBody().getLinearVelocity().cpy().sub(contact.getFixtureB().getBody().getLinearVelocity()).len();
+
+            if (massA >= 1 && massB >= 1 && relSpeed > 5)
+                Util.playSound("Thump" + MathUtils.random(0, 2), MathUtils.clamp(relSpeed / 15, 0, 1));
         }
     }
 

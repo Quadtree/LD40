@@ -1,10 +1,14 @@
 package info.quadtree.ld40;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Affine2;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
+
+import java.util.HashMap;
 
 public class Util {
     public static Body createBodyOfType(BodyDef.BodyType type){
@@ -62,4 +66,14 @@ public class Util {
     }
 
     public static void log(String msg){ defaultFloatFormatter.log(msg); }
+
+    static HashMap<String, Sound> soundPool = new HashMap<String, Sound>();
+
+    public static void playSound(String name, float volume){
+        if (!soundPool.containsKey(name)){
+            soundPool.put(name, Gdx.audio.newSound(Gdx.files.internal(name + ".wav")));
+        }
+
+        soundPool.get(name).play(volume);
+    }
 }

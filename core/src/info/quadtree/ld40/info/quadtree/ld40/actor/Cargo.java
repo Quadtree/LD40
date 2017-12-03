@@ -84,6 +84,8 @@ public class Cargo extends Actor {
                 LD40.s.cgs.addActor(new Debris(newPos));
             }
 
+            Util.playSound("Boom" + MathUtils.random(0, 2), 1);
+
             LD40.s.cgs.world.destroyBody(body);
             body = null;
             destroyed = true;
