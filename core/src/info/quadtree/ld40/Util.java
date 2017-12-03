@@ -58,6 +58,7 @@ public class Util {
     public interface FloatFormatter {
         String formatFloat(float f);
         void log(String msg);
+        double getPerfTime();
     }
 
     public static FloatFormatter defaultFloatFormatter = null;
@@ -80,5 +81,9 @@ public class Util {
 
     public static Preferences getPrefs(){
         return Gdx.app.getPreferences("info.quadtree.ld40.xml");
+    }
+
+    public static double getPerfTime(){
+        return defaultFloatFormatter.getPerfTime();
     }
 }

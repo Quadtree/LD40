@@ -14,6 +14,10 @@ import java.util.logging.Logger;
 
 public class HtmlLauncher extends GwtApplication {
 
+        public static native double perfNow() /*-{
+                return $wnd.performance.now() / 1000.0;
+        }-*/;
+
         @Override
         public GwtApplicationConfiguration getConfig () {
                 GwtApplicationConfiguration conf = new GwtApplicationConfiguration(1024, 768);
@@ -33,6 +37,11 @@ public class HtmlLauncher extends GwtApplication {
                         @Override
                         public void log(String msg) {
                                 Logger.getLogger("LD40").log(Level.INFO, "UL: " + msg);
+                        }
+
+                        @Override
+                        public double getPerfTime() {
+                                return perfNow();
                         }
                 };
                 return new LD40();

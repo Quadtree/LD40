@@ -23,7 +23,7 @@ public class GameState implements ContactListener, InputProcessor {
     public List<Actor> actors = new ArrayList<Actor>();
     List<Actor> actorAddQueue = new ArrayList<Actor>();
 
-    long msDone;
+    double timeDone;
 
     float gameTime = 0;
 
@@ -66,7 +66,7 @@ public class GameState implements ContactListener, InputProcessor {
 
         world.step(0.016f, 4, 4);
 
-        msDone += 16666666;
+        timeDone += 0.0166666666666666666;
 
         if (finalScore == null) gameTime += 0.016f;
     }
@@ -78,13 +78,13 @@ public class GameState implements ContactListener, InputProcessor {
     public void render(){
         int updates = 0;
 
-        while(updates < 10 && System.nanoTime() > msDone){
+        while(updates < 10 && Util.getPerfTime() > timeDone){
             update();
             updates++;
         }
 
         if (updates > 1){
-            System.err.println("Did " + updates + " updates!");
+            Util.log("Did " + updates + " updates!");
         }
 
         cam.translate((pc.getPosition().x - cam.position.x) / 20f, 0);
@@ -229,7 +229,7 @@ public class GameState implements ContactListener, InputProcessor {
 
         groundBody.createFixture(ps, 0);
 
-        msDone = System.nanoTime();
+        timeDone = Util.getPerfTime();
 
         baseLevel.init();
 

@@ -20,6 +20,11 @@ public class DesktopLauncher {
 			public void log(String msg) {
 				System.err.println("UL: " + msg);
 			}
+
+			@Override
+			public double getPerfTime() {
+				return System.nanoTime() / 1000.0 / 1000.0 / 1000.0;
+			}
 		};
 
 		TexturePacker.Settings s = new TexturePacker.Settings();
