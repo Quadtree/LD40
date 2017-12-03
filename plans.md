@@ -16,9 +16,9 @@
 * Sound
 * Main menu
 * Music
-* Truck lands right side up
 
 # Done
+* Truck lands right side up
 * Create level 2
 * Trailers
 * Allow tilting of bed

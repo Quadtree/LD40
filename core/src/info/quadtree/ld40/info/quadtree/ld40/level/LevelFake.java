@@ -18,7 +18,7 @@ public class LevelFake extends BaseLevel {
     }
 
     @Override
-    float getLevelLength() {
+    public float getLevelLength() {
         return 20f;
     }
 

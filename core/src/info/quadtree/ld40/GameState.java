@@ -80,6 +80,15 @@ public class GameState implements ContactListener {
         }
 
         cam.translate((pc.getPosition().x - cam.position.x) / 20f, 0);
+
+        float camTrgY = 25.6f / 2;
+        float pcY = pc.getPosition().y + 7f;
+        if (pcY > 14f){
+            camTrgY = pcY;
+        }
+
+        cam.translate(0, (camTrgY - cam.position.y) / 20f);
+
         cam.update();
 
         backgroundCam.position.x = cam.position.x / 5f;
@@ -145,8 +154,8 @@ public class GameState implements ContactListener {
 
         LD40.s.batch.end();
 
-        //Box2DDebugRenderer dbg = new Box2DDebugRenderer();
-        //dbg.render(world, cam.combined);
+        Box2DDebugRenderer dbg = new Box2DDebugRenderer();
+        dbg.render(world, cam.combined);
     }
 
     public void dispose(){
@@ -189,6 +198,9 @@ public class GameState implements ContactListener {
         uiCam.update();
 
         baseLevel.init();
+
+        LD40.s.cgs.addActor(new StartFlag(new Vector2(0,1.f)));
+        LD40.s.cgs.addActor(new EndFlag(new Vector2(baseLevel.getLevelLength(),1.f)));
 
         for (int i=0;i<30;++i){
             world.step(0.1f, 1, 1);

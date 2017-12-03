@@ -6,70 +6,77 @@ filter: Nearest,Nearest
 repeat: none
 flag
   rotate: false
-  xy: 550, 706
+  xy: 616, 738
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
 flagpole
   rotate: false
-  xy: 2, 174
+  xy: 2, 206
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
 ground1
   rotate: false
-  xy: 550, 640
+  xy: 616, 672
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
+ground_tall
+  rotate: false
+  xy: 516, 2
+  size: 64, 800
+  orig: 64, 800
+  offset: 0, 0
+  index: -1
 mountain1
   rotate: false
-  xy: 2, 258
+  xy: 2, 290
   size: 512, 512
   orig: 512, 512
   offset: 0, 0
   index: -1
 panel1
   rotate: false
-  xy: 616, 706
+  xy: 682, 738
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
 pipe1
   rotate: false
-  xy: 2, 240
+  xy: 2, 272
   size: 300, 16
   orig: 300, 16
   offset: 0, 0
   index: -1
 rock
   rotate: false
-  xy: 68, 218
+  xy: 582, 12
   size: 20, 20
   orig: 20, 20
   offset: 0, 0
   index: -1
 sky
   rotate: false
-  xy: 516, 2
+  xy: 582, 34
   size: 32, 768
   orig: 32, 768
   offset: 0, 0
   index: -1
 solidpole
   rotate: false
-  xy: 304, 248
+  xy: 304, 280
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
   index: -1
 wheel1
   rotate: false
-  xy: 2, 124
+  xy: 2, 156
   size: 48, 48
   orig: 48, 48
   offset: 0, 0

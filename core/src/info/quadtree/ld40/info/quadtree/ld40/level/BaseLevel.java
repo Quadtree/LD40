@@ -10,8 +10,7 @@ import java.util.Random;
 
 public abstract class BaseLevel {
     public void init(){
-        LD40.s.cgs.addActor(new StartFlag(new Vector2(0,1.f)));
-        LD40.s.cgs.addActor(new EndFlag(new Vector2(getLevelLength(),1.f)));
+
 
     }
     public String getName(){ return "BaseLevel"; }
@@ -27,7 +26,7 @@ public abstract class BaseLevel {
         }
     }
 
-    float getLevelLength(){ return 40; }
+    public float getLevelLength(){ return 40; }
 
     public boolean playerHasTrailer(){ return false; }
 }

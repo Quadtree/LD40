@@ -2,16 +2,19 @@ package info.quadtree.ld40.info.quadtree.ld40.level;
 
 import com.badlogic.gdx.math.Vector2;
 import info.quadtree.ld40.LD40;
-import info.quadtree.ld40.info.quadtree.ld40.actor.*;
+import info.quadtree.ld40.info.quadtree.ld40.actor.Crate;
+import info.quadtree.ld40.info.quadtree.ld40.actor.HillChunk;
+import info.quadtree.ld40.info.quadtree.ld40.actor.Pipe;
+import info.quadtree.ld40.info.quadtree.ld40.actor.Rock;
 
 import java.util.Random;
 
-public class Level2 extends BaseLevel {
+public class Level3 extends BaseLevel {
     @Override
     public void init() {
         super.init();
 
-        for (int i=25;i<90;i += 25){
+        /*for (int i=25;i<90;i += 25){
             LD40.s.cgs.addActor(new Crate(i, 18));
         }
 
@@ -27,7 +30,10 @@ public class Level2 extends BaseLevel {
 
         for (int i=80;i<130;i += rand.nextInt(10)){
             LD40.s.cgs.addActor(new Rock(new Vector2(i, 1)));
-        }
+        }*/
+
+        LD40.s.cgs.addActor(new HillChunk(new Vector2(60f, -6), 40, 10));
+        LD40.s.cgs.addActor(new HillChunk(new Vector2(120f, 10), 40, 22));
 
         generateRandomMountains(1);
     }

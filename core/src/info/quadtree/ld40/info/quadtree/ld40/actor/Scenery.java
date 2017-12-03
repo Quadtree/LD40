@@ -8,12 +8,18 @@ import com.badlogic.gdx.physics.box2d.Shape;
 import info.quadtree.ld40.Util;
 
 public abstract class Scenery extends Actor {
-    private Body body;
+    protected Body body;
 
     protected abstract Vector2 getSize();
     protected abstract String getSpriteName();
 
     public Scenery(Vector2 pos) {
+        createBody(pos);
+    }
+
+    public Scenery(){}
+
+    protected void createBody(Vector2 pos) {
         body = Util.createBodyOfType(BodyDef.BodyType.StaticBody);
 
         FixtureDef fd = new FixtureDef();
@@ -24,6 +30,7 @@ public abstract class Scenery extends Actor {
 
         body.setTransform(pos.cpy(), 0);
     }
+
 
     protected abstract Shape createShape();
 

@@ -25,7 +25,7 @@ public class Level1 extends BaseLevel {
     }
 
     @Override
-    float getLevelLength() {
+    public float getLevelLength() {
         return 130f;
     }
 }
