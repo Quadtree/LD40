@@ -199,12 +199,31 @@ public class GameState implements ContactListener {
 
         baseLevel.init();
 
-        LD40.s.cgs.addActor(new StartFlag(new Vector2(0,1.f)));
-        LD40.s.cgs.addActor(new EndFlag(new Vector2(baseLevel.getLevelLength(),1.f)));
+        LD40.s.cgs.addActor(new StartFlag(new Vector2(0,getLowTerrainHeightAt(0)+0.5f)));
+        LD40.s.cgs.addActor(new EndFlag(new Vector2(baseLevel.getLevelLength(),getLowTerrainHeightAt(baseLevel.getLevelLength())+0.5f)));
 
         for (int i=0;i<30;++i){
             world.step(0.1f, 1, 1);
         }
+    }
+
+    float height = 0;
+
+    public float getLowTerrainHeightAt(float x){
+        return Math.min(getTerrainHeightAt(x - 1), getTerrainHeightAt(x + 1));
+    }
+
+    public float getTerrainHeightAt(float x){
+        world.rayCast(new RayCastCallback() {
+            @Override
+            public float reportRayFixture(Fixture fixture, Vector2 point, Vector2 normal, float fraction) {
+                height = point.y;
+
+                return 0;
+            }
+        }, x, 3000, x, 0);
+
+        return height;
     }
 
     @Override

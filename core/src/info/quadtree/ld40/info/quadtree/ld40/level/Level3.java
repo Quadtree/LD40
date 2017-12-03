@@ -32,8 +32,14 @@ public class Level3 extends BaseLevel {
             LD40.s.cgs.addActor(new Rock(new Vector2(i, 1)));
         }*/
 
+
+
         LD40.s.cgs.addActor(new HillChunk(new Vector2(60f, -6), 40, 10));
-        LD40.s.cgs.addActor(new HillChunk(new Vector2(120f, 10), 40, 22));
+        LD40.s.cgs.addActor(new HillChunk(new Vector2(120f, 10), 60, 22));
+
+        for (int i=25;i<130;i += 12){
+            LD40.s.cgs.addActor(new Crate(i, LD40.s.cgs.getTerrainHeightAt(i)+15));
+        }
 
         generateRandomMountains(1);
     }

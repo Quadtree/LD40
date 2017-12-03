@@ -17,7 +17,7 @@ public class Flag extends Actor {
     }
 
     @Override
-    public void render() {
+    public void renderMidground() {
         super.render();
 
         Sprite sp = LD40.s.getSprite("flagpole");

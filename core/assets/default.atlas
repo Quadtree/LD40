@@ -6,21 +6,21 @@ filter: Nearest,Nearest
 repeat: none
 flag
   rotate: false
-  xy: 616, 738
-  size: 64, 64
-  orig: 64, 64
+  xy: 616, 722
+  size: 64, 80
+  orig: 64, 80
   offset: 0, 0
   index: -1
 flagpole
   rotate: false
-  xy: 2, 206
-  size: 64, 64
-  orig: 64, 64
+  xy: 2, 190
+  size: 64, 80
+  orig: 64, 80
   offset: 0, 0
   index: -1
 ground1
   rotate: false
-  xy: 616, 672
+  xy: 616, 656
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
@@ -76,7 +76,7 @@ solidpole
   index: -1
 wheel1
   rotate: false
-  xy: 2, 156
+  xy: 2, 140
   size: 48, 48
   orig: 48, 48
   offset: 0, 0
