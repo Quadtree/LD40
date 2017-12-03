@@ -41,7 +41,7 @@ public class HtmlLauncher extends GwtApplication {
 
                         @Override
                         public double getPerfTime() {
-                                return perfNow();
+                                return System.currentTimeMillis() / 1000.0;
                         }
                 };
                 return new LD40();
