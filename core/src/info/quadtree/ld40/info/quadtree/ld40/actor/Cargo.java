@@ -1,5 +1,7 @@
 package info.quadtree.ld40.info.quadtree.ld40.actor;
 
+import com.badlogic.gdx.math.Affine2;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
@@ -71,6 +73,17 @@ public class Cargo extends Actor {
         }
 
         if (markForDestroy && !destroyed){
+
+            Affine2 a2 = new Affine2();
+            a2.setToRotation(body.getAngle() * MathUtils.radiansToDegrees);
+
+            for (int i=0;i<width * height * 4;i++){
+                Vector2 newPos = new Vector2(MathUtils.random(-width / 2, width / 2), MathUtils.random(-height / 2, height / 2));
+                a2.applyTo(newPos);
+                newPos.add(getPosition());
+                LD40.s.cgs.addActor(new Debris(newPos));
+            }
+
             LD40.s.cgs.world.destroyBody(body);
             body = null;
             destroyed = true;

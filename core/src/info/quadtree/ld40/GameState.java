@@ -1,6 +1,8 @@
 package info.quadtree.ld40;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -13,7 +15,7 @@ import info.quadtree.ld40.info.quadtree.ld40.level.BaseLevel;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GameState implements ContactListener {
+public class GameState implements ContactListener, InputProcessor {
     public World world;
 
     public List<Actor> actors = new ArrayList<Actor>();
@@ -29,7 +31,7 @@ public class GameState implements ContactListener {
 
     public HighScores highScores = null;
 
-    BitmapFont defaultFont = new BitmapFont();
+    BitmapFont defaultFont = null;
 
     public BaseLevel baseLevel;
 
@@ -150,6 +152,8 @@ public class GameState implements ContactListener {
                 }
 
             }
+
+            Gdx.input.setInputProcessor(this);
         }
 
         LD40.s.batch.end();
@@ -164,6 +168,8 @@ public class GameState implements ContactListener {
     }
 
     public void init() {
+        defaultFont = new BitmapFont(Gdx.files.internal("elec-24.fnt"));
+
         world = new World(new Vector2(0, -9.8f), true);
         world.setContactListener(this);
 
@@ -257,5 +263,49 @@ public class GameState implements ContactListener {
     @Override
     public void postSolve(Contact contact, ContactImpulse impulse) {
 
+    }
+
+    @Override
+    public boolean keyDown(int keycode) {
+        if (keycode == Input.Keys.N){
+            LD40.s.levelToLoad = baseLevel.makeNextLevel();
+        }
+
+        return false;
+    }
+
+    @Override
+    public boolean keyUp(int keycode) {
+        return false;
+    }
+
+    @Override
+    public boolean keyTyped(char character) {
+        return false;
+    }
+
+    @Override
+    public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+        return false;
+    }
+
+    @Override
+    public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+        return false;
+    }
+
+    @Override
+    public boolean touchDragged(int screenX, int screenY, int pointer) {
+        return false;
+    }
+
+    @Override
+    public boolean mouseMoved(int screenX, int screenY) {
+        return false;
+    }
+
+    @Override
+    public boolean scrolled(int amount) {
+        return false;
     }
 }

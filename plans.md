@@ -6,13 +6,13 @@
 * Level with a trailer and a downhill slope
 
 # TODO
-* Cargo explodes on death
 * Consider switching fonts
 * Sound
 * Main menu
 * Music
 
 # Done
+* Cargo explodes on death
 * Cab, strut holding bed
 * Controller support
 * Add level bounds

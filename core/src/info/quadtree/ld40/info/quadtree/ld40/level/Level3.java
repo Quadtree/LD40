@@ -53,4 +53,9 @@ public class Level3 extends BaseLevel {
     public float getLevelLength() {
         return 150f;
     }
+
+    @Override
+    public BaseLevel makeNextLevel() {
+        return new Level4();
+    }
 }

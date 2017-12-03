@@ -11,6 +11,13 @@ cab
   orig: 45, 60
   offset: 0, 0
   index: -1
+debris
+  rotate: false
+  xy: 304, 272
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
 flag
   rotate: false
   xy: 616, 722
@@ -76,7 +83,7 @@ sky
   index: -1
 solidpole
   rotate: false
-  xy: 304, 280
+  xy: 616, 646
   size: 8, 8
   orig: 8, 8
   offset: 0, 0

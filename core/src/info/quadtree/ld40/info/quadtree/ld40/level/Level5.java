@@ -60,4 +60,9 @@ public class Level5 extends BaseLevel {
     public boolean playerHasTrailer() {
         return true;
     }
+
+    @Override
+    public BaseLevel makeNextLevel() {
+        return null;
+    }
 }

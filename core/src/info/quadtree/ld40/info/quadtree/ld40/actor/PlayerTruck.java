@@ -231,6 +231,11 @@ public class PlayerTruck extends Actor implements InputProcessor {
         //frontWheel.applyTorque(-500, true);
         //rearWheel.applyTorque(-500, true);
 
+        if (LD40.s.cgs.finalScore != null){
+            accelLeft = false;
+            accelRight = false;
+        }
+
         float accel = 0;
         float bedMovement = 0;
 

@@ -23,7 +23,7 @@ public class LD40 extends ApplicationAdapter {
 
 	public GameState cgs;
 
-
+	public BaseLevel levelToLoad = null;
 
 	public static LD40 s;
 
@@ -44,8 +44,7 @@ public class LD40 extends ApplicationAdapter {
 		img = new Texture("badlogic.jpg");
 		atlas = new TextureAtlas(Gdx.files.internal("default.atlas"));
 
-		cgs = new GameState(new Level4());
-		cgs.init();
+		levelToLoad = new Level1();
 	}
 
 	@Override
@@ -53,7 +52,20 @@ public class LD40 extends ApplicationAdapter {
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        cgs.render();
+		if (levelToLoad != null){
+			if (cgs != null){
+				cgs.dispose();
+				cgs = null;
+			}
+
+			cgs = new GameState(levelToLoad);
+			cgs.init();
+			levelToLoad = null;
+		}
+
+		if (cgs != null) {
+			cgs.render();
+		}
 	}
 	
 	@Override

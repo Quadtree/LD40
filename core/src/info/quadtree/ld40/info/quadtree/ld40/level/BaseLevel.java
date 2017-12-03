@@ -29,4 +29,6 @@ public abstract class BaseLevel {
     public float getLevelLength(){ return 40; }
 
     public boolean playerHasTrailer(){ return false; }
+
+    public abstract BaseLevel makeNextLevel();
 }

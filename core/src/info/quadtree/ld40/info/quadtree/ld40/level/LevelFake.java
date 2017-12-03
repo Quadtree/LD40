@@ -26,4 +26,9 @@ public class LevelFake extends BaseLevel {
     public boolean playerHasTrailer() {
         return true;
     }
+
+    @Override
+    public BaseLevel makeNextLevel() {
+        return null;
+    }
 }
