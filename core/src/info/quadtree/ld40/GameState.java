@@ -178,7 +178,7 @@ public class GameState implements ContactListener {
         addActor(pc);
 
         cam.setToOrtho(false, 25.6f * (1024f / 768f), 25.6f);
-        cam.position.x = 25.6f * (1024f / 768f) / 2;
+        cam.position.x = pc.getPosition().x;
         cam.position.y = 25.6f / 2;
 
         backgroundCam.setToOrtho(false, 25.6f * (1024f / 768f), 25.6f);
@@ -189,6 +189,10 @@ public class GameState implements ContactListener {
         uiCam.update();
 
         baseLevel.init();
+
+        for (int i=0;i<30;++i){
+            world.step(0.1f, 1, 1);
+        }
     }
 
     @Override

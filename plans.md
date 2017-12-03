@@ -6,18 +6,20 @@
 * Level with a trailer and a downhill slope
 
 # TODO
-* Create level 2
 * Create level 3
 * Create level 4
 * Create level 5
 * Add level bounds
 * Controller support
-* Truck lands right side up
+* Cargo explodes on death
+* Consider switching fonts
 * Sound
 * Main menu
 * Music
+* Truck lands right side up
 
 # Done
+* Create level 2
 * Trailers
 * Allow tilting of bed
 * Fix bug with bed not working correctly
