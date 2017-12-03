@@ -4,6 +4,13 @@ size: 1024,1024
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
+cab
+  rotate: false
+  xy: 2, 128
+  size: 45, 60
+  orig: 45, 60
+  offset: 0, 0
+  index: -1
 flag
   rotate: false
   xy: 616, 722
@@ -76,7 +83,7 @@ solidpole
   index: -1
 wheel1
   rotate: false
-  xy: 2, 140
+  xy: 68, 222
   size: 48, 48
   orig: 48, 48
   offset: 0, 0

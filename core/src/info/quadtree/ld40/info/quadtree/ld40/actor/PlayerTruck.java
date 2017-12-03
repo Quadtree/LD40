@@ -145,6 +145,12 @@ public class PlayerTruck extends Actor implements InputProcessor {
             trailerFrontWheel = createWheel(3f, -0.5f, trailerChassis);
         }
 
+        // 45f / 30f, 60f / 30f, 2.3f, 1.4f, 0);
+
+        PolygonShape cabPs = new PolygonShape();
+        cabPs.setAsBox(45f / 30f / 2, 60f / 30f / 2, new Vector2(2.3f, 1.4f), 0);
+        chassis.createFixture(cabPs, 1);
+
 
         Gdx.input.setInputProcessor(this);
     }
@@ -270,6 +276,7 @@ public class PlayerTruck extends Actor implements InputProcessor {
         super.render();
 
         Util.drawOnBody(chassis,"panel1", 6f, .8f);
+        Util.drawOnBody(chassis,"cab", 45f / 30f, 60f / 30f, 2.3f, 1.4f, 0);
 
         drawBed(bed);
         if (trailerChassis != null){
