@@ -72,10 +72,15 @@ public class Util {
 
     static HashMap<String, Sound> soundPool = new HashMap<String, Sound>();
 
-    public static void playSound(String name, float volume){
+    public static void loadSound(String name){
         if (!soundPool.containsKey(name)){
+            Util.log("Loading sound " + name);
             soundPool.put(name, Gdx.audio.newSound(Gdx.files.internal(name + ".wav")));
         }
+    }
+
+    public static void playSound(String name, float volume){
+        loadSound(name);
 
         soundPool.get(name).play(volume);
     }

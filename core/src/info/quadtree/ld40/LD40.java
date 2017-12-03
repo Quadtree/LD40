@@ -57,6 +57,9 @@ public class LD40 extends ApplicationAdapter {
 	
 	@Override
 	public void create () {
+		for (int i=0;i<3;++i) Util.loadSound("Crush" + i);
+		for (int i=0;i<4;++i) Util.loadSound("Thud" + i);
+
 		s = this;
 		batch = new SpriteBatch();
 		img = new Texture("badlogic.jpg");
