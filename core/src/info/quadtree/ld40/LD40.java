@@ -2,6 +2,7 @@ package info.quadtree.ld40;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -119,6 +120,11 @@ public class LD40 extends ApplicationAdapter {
         uiStage.addActor(img);
 
 		uiStage.addActor(mainMenuTable);
+
+		Music mainMusic = Gdx.audio.newMusic(Gdx.files.internal("harmonicas.ogg"));
+		mainMusic.setVolume(0.3f);
+		mainMusic.setLooping(true);
+		mainMusic.play();
 	}
 
     protected void determineButtonVisibility() {

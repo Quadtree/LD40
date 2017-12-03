@@ -36,8 +36,11 @@ public class Level5 extends BaseLevel {
         LD40.s.cgs.addActor(new HillChunk(new Vector2(79.9f, -6.35f), 40, -22));
         LD40.s.cgs.addActor(new HillChunk(new Vector2(160f, -11), 25, 10));
 
-        for (int i=25;i<250;i += 12){
+        for (int i=25;i<200;i += 12){
             LD40.s.cgs.addActor(new Crate(i, LD40.s.cgs.getTerrainHeightAt(i)+15));
+        }
+        for (int i=200;i<250;i += 12){
+            LD40.s.cgs.addActor(new Crate(i, LD40.s.cgs.getTerrainHeightAt(i)+22));
         }
         for (int i=120;i<140;i += 9){
             LD40.s.cgs.addActor(new LongCargo(i, LD40.s.cgs.getTerrainHeightAt(i)+22));
