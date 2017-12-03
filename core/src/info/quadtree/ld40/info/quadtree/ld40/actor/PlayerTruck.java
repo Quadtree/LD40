@@ -22,6 +22,9 @@ public class PlayerTruck extends Actor implements InputProcessor {
     Body bed;
     Body trailerChassis;
 
+    Body trailerRearWheel;
+    Body trailerFrontWheel;
+
     RevoluteJoint bedJoint;
 
     final static float BED_LENGTH = 5f;
@@ -129,8 +132,8 @@ public class PlayerTruck extends Actor implements InputProcessor {
 
             trailerChassis.setTransform(chassis.getPosition().cpy().add(-10, 0), 0);
 
-            createWheel(-3f, -0.5f, trailerChassis);
-            createWheel(3f, -0.5f, trailerChassis);
+            trailerRearWheel = createWheel(-3f, -0.5f, trailerChassis);
+            trailerFrontWheel = createWheel(3f, -0.5f, trailerChassis);
         }
 
 
@@ -244,10 +247,23 @@ public class PlayerTruck extends Actor implements InputProcessor {
         super.render();
 
         Util.drawOnBody(chassis,"panel1", 6f, .8f);
+
+        drawBed(bed);
+        if (trailerChassis != null){
+            drawBed(trailerChassis);
+
+            Util.drawOnBody(trailerChassis,"panel1", 5f, 0.25f, 5f, 0f, 0);
+
+            Util.drawOnBody(trailerRearWheel,"wheel1", 1.6f, 1.6f);
+            Util.drawOnBody(trailerFrontWheel,"wheel1", 1.6f, 1.6f);
+        }
+
         Util.drawOnBody(rearWheel,"wheel1", 1.6f, 1.6f);
         Util.drawOnBody(rearWheel2,"wheel1", 1.6f, 1.6f);
         Util.drawOnBody(frontWheel,"wheel1", 1.6f, 1.6f);
+    }
 
+    private void drawBed(Body bed) {
         Util.drawOnBody(bed,"panel1", BED_LENGTH, BED_HEIGHT);
         Util.drawOnBody(bed,"panel1", BED_ENDS_HEIGHT, BED_HEIGHT, BED_LENGTH / 2 + BED_ENDS_EXTRA_SPREAD, BED_ENDS_HEIGHT / 2, 90 - BED_ENDS_OFFSET_ANGLE);
         Util.drawOnBody(bed,"panel1", BED_ENDS_HEIGHT, BED_HEIGHT, -BED_LENGTH / 2 - BED_ENDS_EXTRA_SPREAD, BED_ENDS_HEIGHT / 2, 90 + BED_ENDS_OFFSET_ANGLE);
