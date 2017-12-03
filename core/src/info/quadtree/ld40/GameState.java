@@ -182,8 +182,12 @@ public class GameState implements ContactListener {
 
         msDone = System.currentTimeMillis();
 
-        pc = new PlayerTruck(baseLevel.playerHasTrailer());
+        baseLevel.init();
 
+        LD40.s.cgs.addActor(new StartFlag(new Vector2(0,getLowTerrainHeightAt(0)-0.5f)));
+        LD40.s.cgs.addActor(new EndFlag(new Vector2(baseLevel.getLevelLength(),getLowTerrainHeightAt(baseLevel.getLevelLength())-0.5f)));
+
+        pc = new PlayerTruck(baseLevel.playerHasTrailer());
         addActor(pc);
 
         cam.setToOrtho(false, 25.6f * (1024f / 768f), 25.6f);
@@ -196,11 +200,6 @@ public class GameState implements ContactListener {
 
         uiCam.setToOrtho(false, 1024, 768);
         uiCam.update();
-
-        baseLevel.init();
-
-        LD40.s.cgs.addActor(new StartFlag(new Vector2(0,getLowTerrainHeightAt(0)-0.5f)));
-        LD40.s.cgs.addActor(new EndFlag(new Vector2(baseLevel.getLevelLength(),getLowTerrainHeightAt(baseLevel.getLevelLength())-0.5f)));
 
         for (int i=0;i<30;++i){
             world.step(0.1f, 1, 1);
@@ -221,7 +220,7 @@ public class GameState implements ContactListener {
 
                 return 0;
             }
-        }, x, 3000, x, 0);
+        }, x, 10000, x, 0);
 
         return height;
     }

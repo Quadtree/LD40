@@ -5,6 +5,7 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.Shape;
+import info.quadtree.ld40.LD40;
 import info.quadtree.ld40.Util;
 
 public abstract class Scenery extends Actor {
@@ -27,6 +28,8 @@ public abstract class Scenery extends Actor {
         fd.density = 0;
 
         body.createFixture(fd);
+
+        body.setUserData(LD40.s.cgs);
 
         body.setTransform(pos.cpy(), 0);
     }

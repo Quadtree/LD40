@@ -100,7 +100,9 @@ public class PlayerTruck extends Actor implements InputProcessor {
         ps.setAsBox(3, 0.4f);
 
         chassis.createFixture(ps, 1);
-        chassis.setTransform(10,15, 0);
+        float startHeight = LD40.s.cgs.getTerrainHeightAt(10) + 15;
+        Util.log("StartHeight=" + startHeight);
+        chassis.setTransform(10,startHeight, 0);
 
         rearWheel = createWheel(-3f, -0.5f, chassis);
         rearWheel2 = createWheel(-1.3f, -0.5f, chassis);
@@ -108,6 +110,7 @@ public class PlayerTruck extends Actor implements InputProcessor {
 
         // Create BED
         this.bed = createBed();
+        bed.setTransform(chassis.getPosition().cpy().add(new Vector2(0,5)), 0);
         RevoluteJointDef rjd = new RevoluteJointDef();
         rjd.bodyA = chassis;
         rjd.bodyB = bed;
@@ -168,6 +171,7 @@ public class PlayerTruck extends Actor implements InputProcessor {
         fd.density = 1;
         fd.friction = 2;
         bed.createFixture(fd);
+
         return bed;
     }
 

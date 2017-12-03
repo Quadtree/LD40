@@ -4,12 +4,9 @@ import com.badlogic.gdx.math.Vector2;
 import info.quadtree.ld40.LD40;
 import info.quadtree.ld40.info.quadtree.ld40.actor.Crate;
 import info.quadtree.ld40.info.quadtree.ld40.actor.HillChunk;
-import info.quadtree.ld40.info.quadtree.ld40.actor.Pipe;
-import info.quadtree.ld40.info.quadtree.ld40.actor.Rock;
+import info.quadtree.ld40.info.quadtree.ld40.actor.LongCargo;
 
-import java.util.Random;
-
-public class Level3 extends BaseLevel {
+public class Level5 extends BaseLevel {
     @Override
     public void init() {
         super.init();
@@ -34,23 +31,33 @@ public class Level3 extends BaseLevel {
 
 
 
-        LD40.s.cgs.addActor(new HillChunk(new Vector2(60f, -6), 40, 10));
-        LD40.s.cgs.addActor(new HillChunk(new Vector2(120f, 10), 60, 22));
 
-        for (int i=25;i<150;i += 6){
+        LD40.s.cgs.addActor(new HillChunk(new Vector2(-20f, 20), 60, -10));
+        LD40.s.cgs.addActor(new HillChunk(new Vector2(79.9f, -6.35f), 40, -22));
+        LD40.s.cgs.addActor(new HillChunk(new Vector2(160f, -11), 25, 10));
+
+        for (int i=25;i<250;i += 12){
             LD40.s.cgs.addActor(new Crate(i, LD40.s.cgs.getTerrainHeightAt(i)+15));
         }
+        for (int i=120;i<140;i += 9){
+            LD40.s.cgs.addActor(new LongCargo(i, LD40.s.cgs.getTerrainHeightAt(i)+15));
+        }
 
-        generateRandomMountains(3);
+        generateRandomMountains(5);
     }
 
     @Override
     public String getName() {
-        return "Level 3";
+        return "Level 5";
     }
 
     @Override
     public float getLevelLength() {
-        return 150f;
+        return 250f;
+    }
+
+    @Override
+    public boolean playerHasTrailer() {
+        return true;
     }
 }
