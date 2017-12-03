@@ -69,6 +69,8 @@ public class GameState implements ContactListener, InputProcessor {
         timeDone += 0.0166666666666666666;
 
         if (finalScore == null) gameTime += 0.016f;
+
+        thudLevel = Math.min(1, thudLevel + 0.02f);
     }
 
     public OrthographicCamera cam = new OrthographicCamera();
@@ -305,10 +307,14 @@ public class GameState implements ContactListener, InputProcessor {
 
             float relSpeed = contact.getFixtureA().getBody().getLinearVelocity().cpy().sub(contact.getFixtureB().getBody().getLinearVelocity()).len();
 
-            if (massA >= .25f && massB >= .25f && relSpeed > 5)
-                Util.playSound("Thump" + MathUtils.random(0, 2), MathUtils.clamp(relSpeed / 15, 0, 1));
+            if (massA >= .25f && massB >= .25f && relSpeed > 5) {
+                Util.playSound("Thud" + MathUtils.random(0, 3), MathUtils.clamp(relSpeed / 15, 0, 1) * thudLevel);
+                thudLevel /= 2;
+            }
         }
     }
+
+    float thudLevel = 0.5f;
 
     @Override
     public void endContact(Contact contact) {
