@@ -78,7 +78,7 @@ public class GameState implements ContactListener, InputProcessor {
     public void render(){
         int updates = 0;
 
-        while(updates < 1 && System.currentTimeMillis() > msDone){
+        while(updates < 10 && System.currentTimeMillis() > msDone){
             update();
             updates++;
         }

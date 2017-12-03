@@ -47,6 +47,7 @@ public abstract class Cargo extends Actor {
         FixtureDef fd = new FixtureDef();
         fd.shape = ps;
         fd.friction = 2;
+        fd.restitution = 0.0f;
         fd.density = getDensity();
 
         body.createFixture(fd);
