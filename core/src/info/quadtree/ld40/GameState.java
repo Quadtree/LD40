@@ -145,8 +145,8 @@ public class GameState implements ContactListener {
 
         LD40.s.batch.end();
 
-        //Box2DDebugRenderer dbg = new Box2DDebugRenderer();
-        //dbg.render(world, cam.combined);
+        Box2DDebugRenderer dbg = new Box2DDebugRenderer();
+        dbg.render(world, cam.combined);
     }
 
     public void dispose(){
@@ -173,7 +173,7 @@ public class GameState implements ContactListener {
 
         msDone = System.currentTimeMillis();
 
-        pc = new PlayerTruck();
+        pc = new PlayerTruck(baseLevel.playerHasTrailer());
 
         addActor(pc);
 

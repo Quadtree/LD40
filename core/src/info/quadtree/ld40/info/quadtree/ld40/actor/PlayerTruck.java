@@ -20,6 +20,7 @@ public class PlayerTruck extends Actor implements InputProcessor {
     Body rearWheel2;
 
     Body bed;
+    Body trailerChassis;
 
     RevoluteJoint bedJoint;
 
@@ -89,7 +90,7 @@ public class PlayerTruck extends Actor implements InputProcessor {
         return false;
     }
 
-    public PlayerTruck(){
+    public PlayerTruck(boolean hasTrailer){
         chassis = Util.createBodyOfType(BodyDef.BodyType.DynamicBody);
 
         PolygonShape ps = new PolygonShape();
@@ -102,7 +103,34 @@ public class PlayerTruck extends Actor implements InputProcessor {
         rearWheel2 = createWheel(-1.3f, -0.5f);
         frontWheel = createWheel(3f, -0.5f);
 
-        bed = Util.createBodyOfType(BodyDef.BodyType.DynamicBody);
+        // Create BED
+        this.bed = createBed();
+        RevoluteJointDef rjd = new RevoluteJointDef();
+        rjd.bodyA = chassis;
+        rjd.bodyB = bed;
+        rjd.localAnchorA.x = -1.8f;
+        rjd.localAnchorA.y = 1f;
+        rjd.enableLimit = true;
+        rjd.collideConnected = false;
+        bedJoint = (RevoluteJoint)LD40.s.cgs.world.createJoint(rjd);
+
+        // Create TRAILER
+        trailerChassis = createBed();
+        rjd = new RevoluteJointDef();
+        rjd.bodyA = chassis;
+        rjd.bodyB = trailerChassis;
+        rjd.localAnchorA.x = -10f;
+        rjd.localAnchorA.y = 0f;
+        rjd.collideConnected = true;
+        bedJoint = (RevoluteJoint)LD40.s.cgs.world.createJoint(rjd);
+
+
+        Gdx.input.setInputProcessor(this);
+    }
+
+    private Body createBed() {
+        PolygonShape ps;
+        Body bed = Util.createBodyOfType(BodyDef.BodyType.DynamicBody);
 
 
         FixtureDef fd = new FixtureDef();
@@ -128,18 +156,7 @@ public class PlayerTruck extends Actor implements InputProcessor {
         fd.density = 1;
         fd.friction = 2;
         bed.createFixture(fd);
-
-        RevoluteJointDef rjd = new RevoluteJointDef();
-        rjd.bodyA = chassis;
-        rjd.bodyB = bed;
-        rjd.localAnchorA.x = -1.8f;
-        rjd.localAnchorA.y = 1f;
-        rjd.enableLimit = true;
-        rjd.collideConnected = false;
-
-        bedJoint = (RevoluteJoint)LD40.s.cgs.world.createJoint(rjd);
-
-        Gdx.input.setInputProcessor(this);
+        return bed;
     }
 
     Body createWheel(float relX, float relY){

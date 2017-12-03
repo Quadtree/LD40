@@ -21,4 +21,9 @@ public class LevelFake extends BaseLevel {
     float getLevelLength() {
         return 20f;
     }
+
+    @Override
+    public boolean playerHasTrailer() {
+        return true;
+    }
 }
