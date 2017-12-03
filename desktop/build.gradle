@@ -32,6 +32,12 @@ task dist(type: Jar) {
     manifest {
         attributes 'Main-Class': project.mainClassName
     }
+
+    copy {
+        from "build/libs/desktop-1.0.jar"
+        rename "desktop-1\\.0", "ld40"
+        into "Y:/ld/ld40"
+    }
 }
 
 dist.dependsOn classes

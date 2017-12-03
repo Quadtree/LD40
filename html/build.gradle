@@ -46,6 +46,8 @@ task dist(dependsOn: [clean, compileGwt]) {
             from "war"
             into "build/dist"
         }
+        delete "Y:/ld/ld40/html5"
+        file("Y:/ld/ld40/html5").mkdirs()
         copy {
             from "build/dist"
             into "Y:/ld/ld40/html5"
