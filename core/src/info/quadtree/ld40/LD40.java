@@ -129,16 +129,21 @@ public class LD40 extends ApplicationAdapter {
 					if (((InputEvent) event).getKeyCode() == Input.Keys.T && ((InputEvent) event).getType() == InputEvent.Type.keyDown){
 						Util.takeScreenshot();
 					}
+					if (((InputEvent) event).getKeyCode() == Input.Keys.M && ((InputEvent) event).getType() == InputEvent.Type.keyDown){
+						Util.toggleMainMusic();
+					}
 				}
 				return false;
 			}
 		});
 
-		Music mainMusic = Gdx.audio.newMusic(Gdx.files.internal("harmonicas.ogg"));
+		mainMusic = Gdx.audio.newMusic(Gdx.files.internal("harmonicas.ogg"));
 		mainMusic.setVolume(0.3f);
 		mainMusic.setLooping(true);
 		mainMusic.play();
 	}
+
+	public Music mainMusic;
 
     protected void determineButtonVisibility() {
         boolean isFirst = true;

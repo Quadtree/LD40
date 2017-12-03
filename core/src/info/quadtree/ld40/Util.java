@@ -91,4 +91,11 @@ public class Util {
     public static void takeScreenshot(){
         defaultFloatFormatter.takeScreenshot();
     }
+
+    public static void toggleMainMusic(){
+        if (LD40.s.mainMusic.isPlaying())
+            LD40.s.mainMusic.stop();
+        else
+            LD40.s.mainMusic.play();
+    }
 }

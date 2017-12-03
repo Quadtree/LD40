@@ -333,6 +333,7 @@ public class GameState implements ContactListener, InputProcessor {
         }
 
         if (keycode == Input.Keys.T) Util.takeScreenshot();
+        if (keycode == Input.Keys.M) Util.toggleMainMusic();
 
         return false;
     }

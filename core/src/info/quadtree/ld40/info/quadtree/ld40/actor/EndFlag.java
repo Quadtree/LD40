@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EndFlag extends Flag {
-    final static String HIGH_SCORE_SERVER_DOMAIN = "https://sigma.quadtree.info";
+    final static String HIGH_SCORE_SERVER_DOMAIN = "https://quadtree.info";
 
     public EndFlag(Vector2 pos) {
         super(pos);
