@@ -41,12 +41,12 @@ public class Level3 extends BaseLevel {
             LD40.s.cgs.addActor(new Crate(i, LD40.s.cgs.getTerrainHeightAt(i)+15));
         }
 
-        generateRandomMountains(1);
+        generateRandomMountains(3);
     }
 
     @Override
     public String getName() {
-        return "Level 2";
+        return "Level 3";
     }
 
     @Override

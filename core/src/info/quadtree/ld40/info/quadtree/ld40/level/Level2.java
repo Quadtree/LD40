@@ -29,7 +29,7 @@ public class Level2 extends BaseLevel {
             LD40.s.cgs.addActor(new Rock(new Vector2(i, 1)));
         }
 
-        generateRandomMountains(1);
+        generateRandomMountains(2);
     }
 
     @Override

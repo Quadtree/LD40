@@ -10,10 +10,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
-import info.quadtree.ld40.info.quadtree.ld40.level.Level1;
-import info.quadtree.ld40.info.quadtree.ld40.level.Level2;
-import info.quadtree.ld40.info.quadtree.ld40.level.Level3;
-import info.quadtree.ld40.info.quadtree.ld40.level.LevelFake;
+import info.quadtree.ld40.info.quadtree.ld40.level.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -47,7 +44,7 @@ public class LD40 extends ApplicationAdapter {
 		img = new Texture("badlogic.jpg");
 		atlas = new TextureAtlas(Gdx.files.internal("default.atlas"));
 
-		cgs = new GameState(new Level3());
+		cgs = new GameState(new Level4());
 		cgs.init();
 	}
 

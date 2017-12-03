@@ -199,8 +199,8 @@ public class GameState implements ContactListener {
 
         baseLevel.init();
 
-        LD40.s.cgs.addActor(new StartFlag(new Vector2(0,getLowTerrainHeightAt(0)+0.5f)));
-        LD40.s.cgs.addActor(new EndFlag(new Vector2(baseLevel.getLevelLength(),getLowTerrainHeightAt(baseLevel.getLevelLength())+0.5f)));
+        LD40.s.cgs.addActor(new StartFlag(new Vector2(0,getLowTerrainHeightAt(0)-0.5f)));
+        LD40.s.cgs.addActor(new EndFlag(new Vector2(baseLevel.getLevelLength(),getLowTerrainHeightAt(baseLevel.getLevelLength())-0.5f)));
 
         for (int i=0;i<30;++i){
             world.step(0.1f, 1, 1);

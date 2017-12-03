@@ -6,11 +6,10 @@
 * Level with a trailer and a downhill slope
 
 # TODO
-* Create level 3
-* Create level 4
 * Create level 5
 * Add level bounds
 * Controller support
+* Cab, strut holding bed
 * Cargo explodes on death
 * Consider switching fonts
 * Sound
@@ -18,6 +17,8 @@
 * Music
 
 # Done
+* Create level 4
+* Create level 3
 * Truck lands right side up
 * Create level 2
 * Trailers
