@@ -6,12 +6,12 @@
 * Level with a trailer and a downhill slope
 
 # TODO
-* Consider switching fonts
 * Sound
 * Main menu
 * Music
 
 # Done
+* Consider switching fonts
 * Cargo explodes on death
 * Cab, strut holding bed
 * Controller support
