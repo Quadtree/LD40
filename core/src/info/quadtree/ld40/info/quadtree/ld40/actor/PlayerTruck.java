@@ -284,9 +284,9 @@ public class PlayerTruck extends Actor implements InputProcessor {
     public void render() {
         super.render();
 
+        Util.drawOnBody(chassis,"panel1", 0.25f, .8f, -1.85f, 0.5f, 0);
         Util.drawOnBody(chassis,"panel1", 6f, .8f);
         Util.drawOnBody(chassis,"cab", 45f / 30f, 60f / 30f, 2.3f, 1.4f, 0);
-        Util.drawOnBody(chassis,"panel1", 0.25f, .8f, -1.85f, 0.5f, 0);
 
         drawBed(bed);
         if (trailerChassis != null){
