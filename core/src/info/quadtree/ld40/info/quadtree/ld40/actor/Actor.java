@@ -8,6 +8,7 @@ public abstract class Actor {
     public void render(){}
     public void renderMidground(){}
     public void backgroundRender(){}
+    public void renderUi(){}
 
     public Vector2 getPosition(){ return new Vector2(0,0); }
 }

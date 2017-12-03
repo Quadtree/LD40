@@ -70,7 +70,7 @@ public class LD40 extends ApplicationAdapter {
 
         TextButton.TextButtonStyle textButtonStyle = new TextButton.TextButtonStyle();
         textButtonStyle.font = new BitmapFont(Gdx.files.internal("elec-24.fnt"));
-        textButtonStyle.up = new NinePatchDrawable(new NinePatch(atlas.createSprite("panel1"), 4, 4, 4, 4));
+        textButtonStyle.up = new NinePatchDrawable(new NinePatch(atlas.createSprite("panel1"), 6, 6, 6, 6));
 
 		Table mainMenuTable = new Table();
 		mainMenuTable.setFillParent(true);

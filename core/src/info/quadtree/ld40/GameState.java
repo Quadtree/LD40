@@ -126,6 +126,8 @@ public class GameState implements ContactListener, InputProcessor {
         LD40.s.batch.setProjectionMatrix(uiCam.combined);
         LD40.s.batch.begin();
 
+        for (Actor a : actors) a.renderUi();
+
         float LINE_SPACING = 25;
         float TEXT_LEFT = 400;
 
