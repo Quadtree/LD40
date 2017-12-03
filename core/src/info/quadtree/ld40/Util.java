@@ -1,6 +1,7 @@
 package info.quadtree.ld40;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Affine2;
@@ -75,5 +76,9 @@ public class Util {
         }
 
         soundPool.get(name).play(volume);
+    }
+
+    public static Preferences getPrefs(){
+        return Gdx.app.getPreferences("info.quadtree.ld40.xml");
     }
 }

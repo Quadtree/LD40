@@ -50,6 +50,8 @@ public class LD40 extends ApplicationAdapter {
 
 		return spritePool.get(name);
 	}
+
+	TextButton[] baseLevelButtons;
 	
 	@Override
 	public void create () {
@@ -83,6 +85,9 @@ public class LD40 extends ApplicationAdapter {
 
 		BaseLevel[] levels = new BaseLevel[]{new Level1(), new Level2(), new Level3(), new Level4(), new Level5()};
 
+        baseLevelButtons = new TextButton[levels.length];
+        int i = 0;
+
 		for (final BaseLevel bl : levels){
             TextButton tb = new TextButton(bl.getName(), textButtonStyle);
 
@@ -95,7 +100,13 @@ public class LD40 extends ApplicationAdapter {
 
             levelSelectTable.add(tb).width(200).pad(10);
             levelSelectTable.row();
+            tb.setUserObject(bl);
+
+            baseLevelButtons[i] = tb;
+            i++;
         }
+
+        determineButtonVisibility();
 
         mainMenuTable.add(levelSelectTable);
         mainMenuTable.row();
@@ -110,7 +121,15 @@ public class LD40 extends ApplicationAdapter {
 		uiStage.addActor(mainMenuTable);
 	}
 
-	@Override
+    protected void determineButtonVisibility() {
+        boolean isFirst = true;
+        for (final TextButton tb : baseLevelButtons){
+            tb.setVisible(Util.getPrefs().getBoolean(((BaseLevel)(tb.getUserObject())).getName(), false) || isFirst);
+            isFirst = false;
+        }
+    }
+
+    @Override
 	public void render () {
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -123,6 +142,8 @@ public class LD40 extends ApplicationAdapter {
 			}
 
 			if (levelToLoad != null) {
+			    Util.getPrefs().putBoolean(levelToLoad.getName(), true);
+                Util.getPrefs().flush();
                 cgs = new GameState(levelToLoad);
                 cgs.init();
                 levelToLoad = null;
@@ -132,6 +153,7 @@ public class LD40 extends ApplicationAdapter {
 		if (cgs != null) {
 			cgs.render();
 		} else {
+            determineButtonVisibility();
 		    Gdx.input.setInputProcessor(uiStage);
 			uiStage.act();
 			uiStage.draw();
