@@ -305,7 +305,7 @@ public class GameState implements ContactListener, InputProcessor {
 
             float relSpeed = contact.getFixtureA().getBody().getLinearVelocity().cpy().sub(contact.getFixtureB().getBody().getLinearVelocity()).len();
 
-            if (massA >= 1 && massB >= 1 && relSpeed > 5)
+            if (massA >= .25f && massB >= .25f && relSpeed > 5)
                 Util.playSound("Thump" + MathUtils.random(0, 2), MathUtils.clamp(relSpeed / 15, 0, 1));
         }
     }
