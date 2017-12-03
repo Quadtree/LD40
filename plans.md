@@ -6,7 +6,6 @@
 * Level with a trailer and a downhill slope
 
 # TODO
-* Cab, strut holding bed
 * Cargo explodes on death
 * Consider switching fonts
 * Sound
@@ -14,6 +13,7 @@
 * Music
 
 # Done
+* Cab, strut holding bed
 * Controller support
 * Add level bounds
 * Create level 5

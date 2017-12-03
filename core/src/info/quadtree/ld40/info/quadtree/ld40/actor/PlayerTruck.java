@@ -118,7 +118,7 @@ public class PlayerTruck extends Actor implements InputProcessor {
         RevoluteJointDef rjd = new RevoluteJointDef();
         rjd.bodyA = chassis;
         rjd.bodyB = bed;
-        rjd.localAnchorA.x = -1.8f;
+        rjd.localAnchorA.x = -1.85f;
         rjd.localAnchorA.y = 1f;
         rjd.enableLimit = true;
         rjd.collideConnected = false;
@@ -264,7 +264,7 @@ public class PlayerTruck extends Actor implements InputProcessor {
         float bedCenter = (bedJoint.getUpperLimit() + bedJoint.getLowerLimit()) / 2;
 
         bedCenter += bedMovement * 0.01f;
-        bedCenter = MathUtils.clamp(bedCenter, -0.2f, .2f);
+        bedCenter = MathUtils.clamp(bedCenter, -0.18f, .18f);
 
         bedJoint.setLimits(bedCenter - 0.01f, bedCenter + 0.01f);
 
@@ -277,6 +277,7 @@ public class PlayerTruck extends Actor implements InputProcessor {
 
         Util.drawOnBody(chassis,"panel1", 6f, .8f);
         Util.drawOnBody(chassis,"cab", 45f / 30f, 60f / 30f, 2.3f, 1.4f, 0);
+        Util.drawOnBody(chassis,"panel1", 0.25f, .8f, -1.85f, 0.5f, 0);
 
         drawBed(bed);
         if (trailerChassis != null){
