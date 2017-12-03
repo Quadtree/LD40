@@ -13,6 +13,10 @@ public class Level4 extends BaseLevel {
     public void init() {
         super.init();
 
+        for (int i=30;i<50;i += 12){
+            LD40.s.cgs.addActor(new Pipe(i, 20));
+        }
+
         for (int i=170;i<200;i += 16){
             LD40.s.cgs.addActor(new Pipe(i, 20));
         }

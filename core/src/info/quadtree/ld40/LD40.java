@@ -89,7 +89,7 @@ public class LD40 extends ApplicationAdapter {
         int i = 0;
 
 		for (final BaseLevel bl : levels){
-            TextButton tb = new TextButton(bl.getName(), textButtonStyle);
+            TextButton tb = new TextButton("Play " + bl.getName(), textButtonStyle);
 
             tb.addListener(new ChangeListener() {
                 @Override
