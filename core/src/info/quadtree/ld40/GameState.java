@@ -66,6 +66,10 @@ public class GameState implements ContactListener, InputProcessor {
 
         world.step(0.016f, 4, 4);
 
+        float camTrgY = getCamTrgY();
+        cam.translate((pc.getPosition().x - cam.position.x) / 20f, 0);
+        cam.translate(0, (camTrgY - cam.position.y) / 20f);
+
         timeDone += 0.0166666666666666666;
 
         if (finalScore == null) gameTime += 0.016f;
@@ -88,12 +92,6 @@ public class GameState implements ContactListener, InputProcessor {
         if (updates > 1){
             Util.log("Did " + updates + " updates!");
         }
-
-        cam.translate((pc.getPosition().x - cam.position.x) / 20f, 0);
-
-        float camTrgY = getCamTrgY();
-
-        cam.translate(0, (camTrgY - cam.position.y) / 20f);
 
         cam.update();
 
