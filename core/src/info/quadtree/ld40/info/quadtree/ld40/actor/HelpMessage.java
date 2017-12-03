@@ -3,6 +3,7 @@ package info.quadtree.ld40.info.quadtree.ld40.actor;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.math.Vector3;
 import info.quadtree.ld40.LD40;
 
 public class HelpMessage extends Actor {
@@ -26,14 +27,9 @@ public class HelpMessage extends Actor {
 
         if (font == null) font = new BitmapFont(Gdx.files.internal("elec-16.fnt"));
 
-        LD40
+        Vector3 screenPos = LD40.s.cgs.cam.project(new Vector3(pos.x, pos.y, 0));
 
-        float vx = (pos.x - LD40.s.cgs.pc.getPosition().x) * 30f;
-        float vy = (pos.y - LD40.s.cgs.pc.getPosition().y) * 30f;
-
-        System.err.println(vx + " " + vy);
-
-        font.draw(LD40.s.batch, text, vx, vy);
+        font.draw(LD40.s.batch, text, screenPos.x, screenPos.y);
     }
 
     @Override

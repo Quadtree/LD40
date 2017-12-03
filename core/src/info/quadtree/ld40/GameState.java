@@ -69,7 +69,7 @@ public class GameState implements ContactListener, InputProcessor {
         if (finalScore == null) gameTime += 0.016f;
     }
 
-    OrthographicCamera cam = new OrthographicCamera();
+    public OrthographicCamera cam = new OrthographicCamera();
     OrthographicCamera backgroundCam = new OrthographicCamera();
     OrthographicCamera uiCam = new OrthographicCamera();
 
