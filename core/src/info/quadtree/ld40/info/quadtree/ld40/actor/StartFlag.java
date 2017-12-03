@@ -12,4 +12,9 @@ public class StartFlag extends Flag {
     protected Color getColor() {
         return Color.RED;
     }
+
+    @Override
+    float invisibileWallOffset() {
+        return -10f;
+    }
 }

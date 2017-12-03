@@ -21,6 +21,11 @@ public class EndFlag extends Flag {
     }
 
     @Override
+    float invisibileWallOffset() {
+        return 30f;
+    }
+
+    @Override
     protected Color getColor() {
         return Color.GREEN;
     }

@@ -6,7 +6,6 @@
 * Level with a trailer and a downhill slope
 
 # TODO
-* Add level bounds
 * Controller support
 * Cab, strut holding bed
 * Cargo explodes on death
@@ -16,6 +15,7 @@
 * Music
 
 # Done
+* Add level bounds
 * Create level 5
 * Create level 4
 * Create level 3
