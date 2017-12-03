@@ -132,9 +132,9 @@ public class GameState implements ContactListener, InputProcessor {
         for (Actor a : actors) a.renderMidground();
 
         final float groundBlockWidth = 64 / 30f;
+        float pcx = pc.getPosition().x;
         for (int i=-1000;i<1000;++i){
-            LD40.s.batch.draw(LD40.s.getSprite("ground1"), groundBlockWidth*i, - groundBlockWidth + 1f, groundBlockWidth, groundBlockWidth);
-
+            if (Math.abs(groundBlockWidth*i - pcx) < 30) LD40.s.batch.draw(LD40.s.getSprite("ground1"), groundBlockWidth*i, - groundBlockWidth + 1f, groundBlockWidth, groundBlockWidth);
         }
 
         for (int i=0;i<actors.size();++i){
