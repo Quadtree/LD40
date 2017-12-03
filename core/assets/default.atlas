@@ -46,6 +46,13 @@ pipe1
   orig: 300, 16
   offset: 0, 0
   index: -1
+rock
+  rotate: false
+  xy: 68, 218
+  size: 20, 20
+  orig: 20, 20
+  offset: 0, 0
+  index: -1
 sky
   rotate: false
   xy: 516, 2
