@@ -6,7 +6,6 @@
 * Level with a trailer and a downhill slope
 
 # TODO
-* Trailers
 * Create level 2
 * Create level 3
 * Create level 4
@@ -19,6 +18,7 @@
 * Music
 
 # Done
+* Trailers
 * Allow tilting of bed
 * Fix bug with bed not working correctly
 * Increase cargo friction

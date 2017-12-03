@@ -6,21 +6,21 @@ filter: Nearest,Nearest
 repeat: none
 flag
   rotate: false
-  xy: 2, 192
+  xy: 550, 706
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
 flagpole
   rotate: false
-  xy: 550, 706
+  xy: 2, 174
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
 ground1
   rotate: false
-  xy: 2, 126
+  xy: 550, 640
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
@@ -34,9 +34,16 @@ mountain1
   index: -1
 panel1
   rotate: false
-  xy: 68, 192
+  xy: 616, 706
   size: 64, 64
   orig: 64, 64
+  offset: 0, 0
+  index: -1
+pipe1
+  rotate: false
+  xy: 2, 240
+  size: 300, 16
+  orig: 300, 16
   offset: 0, 0
   index: -1
 sky
@@ -48,14 +55,14 @@ sky
   index: -1
 solidpole
   rotate: false
-  xy: 616, 762
+  xy: 304, 248
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
   index: -1
 wheel1
   rotate: false
-  xy: 550, 656
+  xy: 2, 124
   size: 48, 48
   orig: 48, 48
   offset: 0, 0
