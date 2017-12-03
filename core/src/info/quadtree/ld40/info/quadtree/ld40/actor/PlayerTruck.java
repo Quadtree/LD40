@@ -110,7 +110,6 @@ public class PlayerTruck extends Actor implements InputProcessor {
 
         // Create BED
         this.bed = createBed();
-        bed.setTransform(chassis.getPosition().cpy().add(new Vector2(0,5)), 0);
         RevoluteJointDef rjd = new RevoluteJointDef();
         rjd.bodyA = chassis;
         rjd.bodyB = bed;
@@ -119,6 +118,8 @@ public class PlayerTruck extends Actor implements InputProcessor {
         rjd.enableLimit = true;
         rjd.collideConnected = false;
         bedJoint = (RevoluteJoint)LD40.s.cgs.world.createJoint(rjd);
+
+        bed.setTransform(chassis.getPosition().cpy().add(new Vector2(0,5)), 0);
 
         if (hasTrailer) {
             // Create TRAILER
@@ -131,7 +132,7 @@ public class PlayerTruck extends Actor implements InputProcessor {
             rjd.localAnchorB.x = 7f;
             rjd.localAnchorB.y = 0f;
             rjd.collideConnected = true;
-            bedJoint = (RevoluteJoint) LD40.s.cgs.world.createJoint(rjd);
+            LD40.s.cgs.world.createJoint(rjd);
 
             trailerChassis.setTransform(chassis.getPosition().cpy().add(-10, 0), 0);
 
