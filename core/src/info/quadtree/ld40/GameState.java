@@ -187,6 +187,8 @@ public class GameState implements ContactListener, InputProcessor {
                 defaultFont.draw(LD40.s.batch, "The end! Press N to return to the main menu", TEXT_LEFT, y -= LINE_SPACING);
             }
 
+            defaultFont.draw(LD40.s.batch, "Press R to restart level", TEXT_LEFT, y -= LINE_SPACING);
+
             Gdx.input.setInputProcessor(this);
         }
 
@@ -338,6 +340,10 @@ public class GameState implements ContactListener, InputProcessor {
 
         if (keycode == Input.Keys.T) Util.takeScreenshot();
         if (keycode == Input.Keys.M) Util.toggleMainMusic();
+
+        if (keycode == Input.Keys.R){
+            LD40.s.levelToLoad = LD40.s.cgs.baseLevel;
+        }
 
         return false;
     }
