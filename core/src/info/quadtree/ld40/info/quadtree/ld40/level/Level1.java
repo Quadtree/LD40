@@ -16,7 +16,7 @@ public class Level1 extends BaseLevel {
 
         for (int i=20;i<getLevelLength();i += 7){
             if (i < 80)
-                LD40.s.cgs.addActor(new Cargo("panel1", i, 10, 1, 1));
+                LD40.s.cgs.addActor(new Crate(i, 10));
             else
                 LD40.s.cgs.addActor(new LongCargo(i, 20));
         }

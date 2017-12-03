@@ -11,6 +11,13 @@ cab
   orig: 45, 60
   offset: 0, 0
   index: -1
+crate
+  rotate: false
+  xy: 582, 2
+  size: 30, 30
+  orig: 30, 30
+  offset: 0, 0
+  index: -1
 debris
   rotate: false
   xy: 1330, 1042
@@ -76,7 +83,7 @@ pipe1
   index: -1
 rock
   rotate: false
-  xy: 582, 12
+  xy: 2, 186
   size: 20, 20
   orig: 20, 20
   offset: 0, 0
@@ -90,7 +97,7 @@ sky
   index: -1
 solidpole
   rotate: false
-  xy: 2, 198
+  xy: 68, 280
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
