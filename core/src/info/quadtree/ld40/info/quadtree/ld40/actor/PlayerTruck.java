@@ -35,7 +35,7 @@ public class PlayerTruck extends Actor implements InputProcessor {
     boolean lowerBed;
 
     public float getLengthBehind(){
-        return 5f;
+        return trailerChassis == null ? 5f : 15f;
     }
 
     @Override
@@ -99,9 +99,9 @@ public class PlayerTruck extends Actor implements InputProcessor {
         chassis.createFixture(ps, 1);
         chassis.setTransform(10,15, 0);
 
-        rearWheel = createWheel(-3f, -0.5f);
-        rearWheel2 = createWheel(-1.3f, -0.5f);
-        frontWheel = createWheel(3f, -0.5f);
+        rearWheel = createWheel(-3f, -0.5f, chassis);
+        rearWheel2 = createWheel(-1.3f, -0.5f, chassis);
+        frontWheel = createWheel(3f, -0.5f, chassis);
 
         // Create BED
         this.bed = createBed();
@@ -114,15 +114,24 @@ public class PlayerTruck extends Actor implements InputProcessor {
         rjd.collideConnected = false;
         bedJoint = (RevoluteJoint)LD40.s.cgs.world.createJoint(rjd);
 
-        // Create TRAILER
-        trailerChassis = createBed();
-        rjd = new RevoluteJointDef();
-        rjd.bodyA = chassis;
-        rjd.bodyB = trailerChassis;
-        rjd.localAnchorA.x = -10f;
-        rjd.localAnchorA.y = 0f;
-        rjd.collideConnected = true;
-        bedJoint = (RevoluteJoint)LD40.s.cgs.world.createJoint(rjd);
+        if (hasTrailer) {
+            // Create TRAILER
+            trailerChassis = createBed();
+            rjd = new RevoluteJointDef();
+            rjd.bodyA = chassis;
+            rjd.bodyB = trailerChassis;
+            rjd.localAnchorA.x = -3f;
+            rjd.localAnchorA.y = 0f;
+            rjd.localAnchorB.x = 7f;
+            rjd.localAnchorB.y = 0f;
+            rjd.collideConnected = true;
+            bedJoint = (RevoluteJoint) LD40.s.cgs.world.createJoint(rjd);
+
+            trailerChassis.setTransform(chassis.getPosition().cpy().add(-10, 0), 0);
+
+            createWheel(-3f, -0.5f, trailerChassis);
+            createWheel(3f, -0.5f, trailerChassis);
+        }
 
 
         Gdx.input.setInputProcessor(this);
@@ -159,7 +168,7 @@ public class PlayerTruck extends Actor implements InputProcessor {
         return bed;
     }
 
-    Body createWheel(float relX, float relY){
+    Body createWheel(float relX, float relY, Body chassis){
         Body ret = Util.createBodyOfType(BodyDef.BodyType.DynamicBody);
 
         CircleShape cs = new CircleShape();

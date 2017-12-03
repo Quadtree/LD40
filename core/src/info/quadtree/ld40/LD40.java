@@ -45,7 +45,7 @@ public class LD40 extends ApplicationAdapter {
 		img = new Texture("badlogic.jpg");
 		atlas = new TextureAtlas(Gdx.files.internal("default.atlas"));
 
-		cgs = new GameState(new Level1());
+		cgs = new GameState(new LevelFake());
 		cgs.init();
 	}
 
