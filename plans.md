@@ -6,12 +6,14 @@
 * Level with a trailer and a downhill slope
 
 # TODO
+* Trailers
 * Create level 2
 * Create level 3
 * Create level 4
 * Create level 5
 * Add level bounds
 * Controller support
+* Truck lands right side up
 * Sound
 * Main menu
 * Music
