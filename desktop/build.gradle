@@ -33,10 +33,12 @@ task dist(type: Jar) {
         attributes 'Main-Class': project.mainClassName
     }
 
-    copy {
-        from "build/libs/desktop-1.0.jar"
-        rename "desktop-1\\.0", "ld40"
-        into "Y:/ld/ld40"
+    doLast {
+        copy {
+            from "build/libs/desktop-1.0.jar"
+            rename "desktop-1\\.0", "ld40"
+            into "Y:/ld/ld40"
+        }
     }
 }
 
